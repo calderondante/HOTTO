@@ -1,0 +1,89 @@
+# Entorno de desarrollo
+
+Repositorio seleccionado: `calderondante/HOTTO`, checkout `/workspace/HOTTO`.
+Inicialmente estaba vacío, en una rama local sin commits llamada `work`, y
+GitHub no devolvía refs. La preparación se realiza en `setup/hotto-bootstrap`.
+El estado final de publicación y las verificaciones ejecutadas se registrarán
+en `docs/VALIDACION.md`.
+
+## Persistencia
+
+| Elemento | Persistencia |
+| --- | --- |
+| Fuente, config, docs, scripts, skills y lockfiles | Git, después de commit y push confirmado |
+| `node_modules`, `.next`, `.cache` | Generados y excluidos; reconstruir con scripts |
+| Procesos web, navegador y contenedores | Reiniciar por sesión; no sobreviven por estar versionados |
+| Install Script y Start Skill cloud | Borrador de configuración, sujeto a guardado/publicación del entorno |
+| `.env.local`, sesiones y credenciales externas | Solo estado local o configuración segura; nunca Git |
+
+## Install Script y Start Skill
+
+Install Script completo:
+
+```bash
+set -euo pipefail
+cd /workspace/HOTTO
+bash scripts/setup-cloud.sh
+```
+
+Start Skill debe indicar: usar el checkout existente, sin worktrees salvo pedido
+explícito; leer `AGENTS.md`; ejecutar setup si faltan dependencias; iniciar
+`bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000` en un proceso mantenido
+por las herramientas de la sesión; comprobar HTTP 200 y el texto HOTTO, revisar
+errores y, cuando haya tareas de interfaz, aplicar `next-dev-loop` con MCP y el
+navegador local. No mostrar links de preview a direcciones de loopback en onboarding.
+
+Ejecutar build/verificación con el servidor de desarrollo detenido. No borrar
+`.next` mientras está activo. Supabase se arranca con `scripts/supabase.sh start`
+solo cuando la tarea requiera servicios de datos; no necesita proyectos remotos.
+No imprimir ni registrar claves que devuelve su CLI. El setup no reinicia datos.
+
+## Red
+
+La política observada es restringida, con el preset de gestores de paquetes,
+GitHub por HTTPS y raw.githubusercontent.com permitidos. npm y Git de lectura
+funcionaron. Se solicitaron adiciones a los dominios personalizados conservando
+los presets existentes:
+
+- `ui.shadcn.com`: registro de componentes y documentación shadcn.
+- `supabase.com`: documentación y changelog de Supabase.
+- `api.github.com`: consulta de repositorio y creación del PR mediante GitHub CLI.
+
+El borrador guardado no cambia por sí solo la red de esta máquina. Revisar y
+guardar cambios en la configuración del entorno y publicarlo para activar la
+versión correspondiente. Reintentar la operación después de aplicar cambios.
+No desactivar TLS ni ampliar a todos los hosts para solucionar un bloqueo.
+
+La documentación oficial de instalación de Next.js y shadcn se consultó desde
+sus repositorios oficiales accesibles. El registro shadcn no respondió en la
+política inicial, por lo que se usó la instalación manual oficial. Agregar
+componentes posteriormente requiere acceso al registro o una fuente autorizada.
+
+Docker y Chromium están presentes en la máquina inspeccionada. En una máquina
+distinta, verificar sus capacidades antes de exigir checks que los necesiten.
+El flujo inicial de tipos, lint, build y smoke no requiere Docker, navegador ni
+claves Supabase; el flujo de UI real y datos sí necesita sus servicios específicos.
+
+El Chromium de este contenedor no tiene el helper SUID configurado. Para verificar
+la aplicación local aislada se utilizó el argumento `--no-sandbox` del navegador:
+
+```bash
+export AGENT_BROWSER_ARGS='--no-sandbox'
+bash scripts/browser.sh open http://127.0.0.1:3000
+bash scripts/browser.sh snapshot
+bash scripts/browser.sh react tree
+bash scripts/browser.sh errors
+bash scripts/browser.sh close
+```
+
+El wrapper mantiene el socket en `.cache/agent-browser`, selecciona Chromium y
+habilita el hook React. La CLI 0.39.1 guarda exports de restore bajo HOME sin
+override de ruta; esa carpeta es de solo lectura aquí. Se usa su alternativa
+oficial de perfil Chrome persistente en `.cache/browser/profile-<sesión>` y
+`restore-save=never` para evitar ese export inaccesible. No se cambia HOME.
+En un equipo con sandbox de navegador funcional, omitir `AGENT_BROWSER_ARGS`.
+No se desactiva verificación TLS. Mantener los mismos argumentos en cada shell.
+
+La CLI de Supabase tiene fallback oficial de ECR a GHCR. Si ECR está bloqueado,
+puede fijarse `SUPABASE_INTERNAL_IMAGE_REGISTRY=ghcr.io` para el comando de arranque,
+con las mismas versiones de servicios; no se sustituyen imágenes por terceros.

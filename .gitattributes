@@ -1,0 +1,3 @@
+# Preserve upstream skill bytes, including Markdown hard breaks and examples.
+# Their integrity is verified by scripts/skills-integrity.json.
+.agents/skills/** -whitespace linguist-vendored

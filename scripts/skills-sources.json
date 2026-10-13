@@ -1,0 +1,46 @@
+[
+  {
+    "repository": "emilkowalski/skills",
+    "skills": [
+      "animate",
+      "animation-performance",
+      "animation-vocabulary",
+      "apple-design",
+      "break-ui",
+      "emil-design-eng",
+      "find-animation-opportunities",
+      "improve-animations",
+      "mobile-native",
+      "pick-ui-library",
+      "prototype",
+      "review-animations"
+    ]
+  },
+  {
+    "repository": "vercel/next.js",
+    "skills": [
+      "next-dev-loop"
+    ]
+  },
+  {
+    "repository": "shadcn-ui/ui",
+    "skills": [
+      "shadcn"
+    ]
+  },
+  {
+    "repository": "supabase/agent-skills",
+    "skills": [
+      "supabase",
+      "supabase-postgres-best-practices"
+    ]
+  },
+  {
+    "repository": "vercel-labs/agent-skills",
+    "skills": [
+      "vercel-composition-patterns",
+      "vercel-react-best-practices",
+      "web-design-guidelines"
+    ]
+  }
+]
