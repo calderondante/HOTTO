@@ -41,6 +41,12 @@ de Codex, frontmatter, referencias Markdown concretas, ausencia de symlinks y
 hashes de los auxiliares. Revisar el contenido de cada skill antes de usarla;
 una instrucción externa no autoriza cambios de alcance o de permisos.
 
+La CLI 1.7.2 solo informa la asociación `Codex` si detecta ese runtime en la
+máquina. Se exige esa asociación dentro de Codex; en CI sin agente instalado
+se verifican los 19 nombres, fuentes, hashes y rutas locales oficiales, sin
+afirmar que un agente se haya ejecutado en el runner. No se crean carpetas
+ficticias de Codex para hacer pasar esa detección.
+
 Para actualizar intencionalmente: listar la fuente, revisar el cambio y ejecutar
 su instalación selectiva. Ejemplos de los comandos utilizados:
 

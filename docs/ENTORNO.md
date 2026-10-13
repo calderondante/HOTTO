@@ -48,6 +48,7 @@ los presets existentes:
 - `ui.shadcn.com`: registro de componentes y documentación shadcn.
 - `supabase.com`: documentación y changelog de Supabase.
 - `api.github.com`: consulta de repositorio y creación del PR mediante GitHub CLI.
+- `results-receiver.actions.githubusercontent.com`: descarga de logs del CI de GitHub.
 
 El borrador guardado no cambia por sí solo la red de esta máquina. Revisar y
 guardar cambios en la configuración del entorno y publicarlo para activar la
@@ -58,6 +59,10 @@ La documentación oficial de instalación de Next.js y shadcn se consultó desde
 sus repositorios oficiales accesibles. El registro shadcn no respondió en la
 política inicial, por lo que se usó la instalación manual oficial. Agregar
 componentes posteriormente requiere acceso al registro o una fuente autorizada.
+
+La consulta REST inicial de GitHub fue rechazada, pero posteriormente funcionaron
+la creación y la lectura del PR mediante GitHub CLI. Las capacidades se verifican
+por operación; un rechazo inicial no demuestra que falten todas las credenciales.
 
 Docker y Chromium están presentes en la máquina inspeccionada. En una máquina
 distinta, verificar sus capacidades antes de exigir checks que los necesiten.

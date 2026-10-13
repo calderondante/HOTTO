@@ -18,8 +18,23 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version-file: .node-version
-      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+      - uses: pnpm/action-setup@a8198c4bff370c8506180b035930dea56dbd5288 # v5, Node 24
       - name: Install frozen dependencies and verify local skills
         run: bash scripts/setup-cloud.sh
       - name: Types, lint, build and production smoke
-        run: bash scripts/verify-setup.sh
+        shell: bash
+        run: |
+          set +e
+          bash scripts/verify-setup.sh > "$RUNNER_TEMP/hotto-verify.log" 2>&1
+          verify_status=$?
+          set -e
+          cat "$RUNNER_TEMP/hotto-verify.log"
+          if [ "$verify_status" -ne 0 ]; then
+            node - "$RUNNER_TEMP/hotto-verify.log" <<'NODE'
+          const fs = require('node:fs');
+          const message = fs.readFileSync(process.argv[2], 'utf8').slice(-6000)
+            .replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A');
+          console.log(`::error title=HOTTO verification failed::${message}`);
+          NODE
+          fi
+          exit "$verify_status"

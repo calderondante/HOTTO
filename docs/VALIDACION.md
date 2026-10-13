@@ -46,8 +46,17 @@ quedan sin conflictos. El aviso de soporte de ESLint 9 está explicado en
 Los controles de navegador/a11y cubren únicamente la pantalla inicial. No
 demuestran accesibilidad, seguridad o funcionamiento de páginas aún inexistentes.
 No se ejecutó una suite de producto porque no hay funcionalidades ni tests de
-producto implementados. El workflow CI está preparado; su ejecución en GitHub
-no se verificó desde esta sesión.
+producto implementados. El workflow CI está preparado y sus resultados por
+commit se consultan en el PR y en GitHub Actions.
+
+Los primeros runs de CI instalaron correctamente, pero la verificación asumía
+que Codex estaba instalado en el runner. Se investigó el código oficial de la
+CLI skills: solo añade asociaciones de agentes que detecta en la máquina.
+La comprobación ahora exige nombres, fuentes, hashes y ubicación oficial en
+todas las máquinas, y además la asociación Codex cuando ese runtime existe.
+No se fabrican carpetas de agente ni se omiten tipos, lint, build o smoke.
+El workflow conserva el exit status y adjunta un extracto del error como
+anotación de GitHub para diagnosticar fallos sin depender de una descarga de logs.
 
 ## Límites comprobados
 
@@ -78,15 +87,17 @@ sido verificadas. Las sesiones y procesos necesitan reiniciarse después.
 
 La rama de trabajo es `setup/hotto-bootstrap`. Se creó y subió `main` con un
 commit inicial vacío para poder comparar el bootstrap, sin force push ni código
-de producto directo sobre main. La publicación del bootstrap debe comprobarse
-mediante `git ls-remote origin refs/heads/setup/hotto-bootstrap` después del push.
-No se fusiona la rama ni se despliega la aplicación.
+de producto directo sobre main. El bootstrap se subió en el commit
+`785eda41664f887e31dedb073f012321b5f07ab7`; `git ls-remote origin` confirmó ese
+mismo SHA remoto. El árbol estaba limpio después del commit y push. Se excluyeron
+credenciales locales, dependencias, cachés y salidas de compilación.
+No se fusionó la rama ni se desplegó la aplicación.
 
-La API de GitHub devolvió `Forbidden` bajo la política observada. El acceso Git
-por HTTPS sí funciona: no se solicitó un token adicional ni se concluyó que la
-autenticación Git estuviera ausente por el estado de `gh auth`. Si la API sigue
-bloqueada, el PR puede abrirse en GitHub desde la comparación de ramas, o desde
-una sesión con el dominio permitido; no se declara un PR creado sin su URL.
+La consulta REST inicial a la API de GitHub devolvió `Forbidden`, pero la
+creación posterior del PR mediante GitHub CLI funcionó. El acceso se comprobó
+por operación; no se pidió otro token ni se concluyó que faltara autenticación
+Git por el estado de `gh auth`. PR creado y confirmado OPEN hacia `main`:
+https://github.com/calderondante/HOTTO/pull/1
 
 Siguiente paso de producto: validar el listado oficial de 34 materias y los
 permisos documentales antes de diseñar las primeras migraciones y políticas RLS.
