@@ -14,8 +14,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 HOTTO es una plataforma para la comunidad jurídica argentina. La biblioteca es
 el producto principal y debe ser pública sin cuentas obligatorias inicialmente.
-Consultar `docs/PRODUCTO.md` y `docs/ROADMAP.md`. Este bootstrap prepara el entorno;
-no implica que las páginas, el catálogo, el lector o la administración existan.
+Consultar `docs/PRODUCTO.md` y `docs/ROADMAP.md`. El primer MVP contiene biblioteca y dataset local de demostración;
+no implica conexión Supabase, lector avanzado ni administración.
 No inventar materias, bibliografía, datos universitarios ni permisos de distribución.
 
 ## Entorno y arquitectura
@@ -69,9 +69,9 @@ bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000
 
 El script de setup usa instalación congelada y no actualiza skills automáticamente.
 La verificación exige integridad, descubrimiento local por Codex, TypeScript,
-ESLint, build y smoke funcional de producción. Antes de construir, detener solo
-el servidor que hayas iniciado: `next-dev-loop` requiere conservar `.next` mientras
-`next dev` está activo. No borrar sus cachés con un servidor vivo.
+ESLint, build y smoke funcional de producción. Los builds usan `.next-production` y el desarrollo `.next-mvp` cuando se fija
+`HOTTO_BUILD_DIR`; mantener esas caches separadas y conservar la cache de cualquier
+servidor vivo, conforme a `next-dev-loop`. No borrar sus cachés con un servidor vivo.
 
 Para cambios de comportamiento, sumar pruebas que fallen ante el defecto real.
 Verificar con navegador cuando esté disponible y aplicar `next-dev-loop` con sus
@@ -104,4 +104,5 @@ No hacer force push, resetear trabajo ajeno ni incorporar secretos. Revisar
 `git diff --check`, `git status --short` y archivos ignorados antes de commit.
 Actualizar documentación y lockfile cuando cambien requisitos. Publicar ramas
 y abrir PR solo cuando el usuario haya autorizado esa operación; no fusionarlos
-ni desplegar automáticamente. Este pedido de bootstrap autoriza su rama y PR.
+ni desplegar automáticamente. El usuario autorizó fusionar el bootstrap y publicar la rama/PR del MVP; no fusionar
+el PR del MVP ni desplegar sin una nueva instrucción.

@@ -1,34 +1,33 @@
-# Arquitectura inicial
+# Arquitectura del MVP
 
-Una aplicación Next.js con App Router, React y TypeScript estricto. Tailwind CSS
-4 y shadcn/ui aportan el sistema de estilos; los componentes se agregarán por
-necesidad. Server Components por defecto, con límites de cliente pequeños para
-interacciones. No hay páginas institucionales ni funciones editoriales todavía.
+Una aplicación Next.js 16.4 App Router, React 19.3 y TypeScript estricto. Servidor
+por defecto; búsqueda, filtros, controles Base UI y menú forman los límites
+cliente. Supabase y PDF.js están instalados desde el bootstrap pero no se importan
+en el catálogo ni se simula una conexión. No se necesitan credenciales para el MVP.
 
-| Capa | Base preparada | Trabajo posterior |
-| --- | --- | --- |
-| Web | Next.js, `src/app`, layout español, pantalla mínima | Navegación, fichas, metadata permanente y SEO |
-| UI | Tokens semánticos, `components.json`, helper `cn` | Componentes accesibles, sin instalar todo el catálogo |
-| Datos | SDK Supabase, integración SSR instalada, CLI y config local | Clientes por contexto, tipos generados, consultas y RLS |
-| Auth | Servicio previsto en config local, registro deshabilitado | Sesiones verificadas en servidor, roles administrativos |
-| Documentos | PDF.js instalado, sin importar en el bundle inicial | Worker local, carga diferida, autorizaciones y Range requests |
-| Validación | Scripts de integridad, lint, tipos, build y smoke | Pruebas de producto y políticas SQL cuando haya funcionalidades |
+| Capa | Implementación |
+| --- | --- |
+| Rutas | Inicio, biblioteca, materias, libros, jurisprudencia y recursos complementarios |
+| Dataset | `src/lib/library/{subjects,data,types}.ts`, versionado y con procedencia explícita |
+| Repositorio | `repository.ts`, lectura local de recursos publicados, relaciones N:M y archivos con licencia |
+| Búsqueda | `query.ts`, normalización de acentos/case, términos AND, título/autor/palabras clave |
+| Estado | Filtros instantáneos y URL mediante History API de Next; formulario GET para SSR y recarga |
+| UI | Tokens Tailwind, componentes shadcn Base UI y CSS institucional |
+| Documentos | Dos PDF originales de una página; enlaces reales de apertura y descarga, sin visor falso |
+| Base futura | Migración normalizada y RLS preparada, sin ejecución PostgreSQL |
 
-Supabase PostgreSQL almacenará los metadatos; Storage tendrá buckets privados
-por defecto. La lectura pública será una decisión por documento. Auth se
-reservará inicialmente al flujo editorial; no habrá cuentas obligatorias para
-consultar contenido público. No hay autenticación simulada.
+Los slugs son estables y las páginas inválidas devuelven 404. Los recursos
+legislativos, programas y complementos tienen `/biblioteca/recursos/[slug]` para
+que todas las tarjetas tengan una ficha propia. Los libros y casos tienen sus
+secciones específicas. Cada materia organiza cinco categorías; 32 materias sin
+recursos muestran un estado vacío con acceso a los pilotos.
 
-Estructura: `src/app` para rutas, `src/components` para UI, `src/lib` para
-utilidades e integraciones, `supabase` para configuración y futuras migraciones,
-`docs` para decisiones, `design` para referencias autorizadas y `.agents/skills`
-para instrucciones locales. `public` admite solo recursos realmente públicos.
+Título y descripción por página, lang `es-AR`, viewport y color de tema.
+Se conserva `noindex, nofollow` porque esta entrega contiene autores y fallos
+ficticios. No se inventan dominio canónico, ISBN, citas judiciales ni permisos.
+Al publicar contenido real: revisar robots, canonical, sitemap y Open Graph con
+el dominio confirmado. No hay deployment ni panel editorial en esta entrega.
 
-Las dependencias directas están fijadas y `pnpm-lock.yaml` resuelve las
-transitivas con integridad. Las herramientas de agentes son dependencias de
-desarrollo. PDF.js y Supabase no se importan en la pantalla mínima.
-
-Para Vercel se usará el runtime Node.js 24 y las convenciones estándar del
-framework. No hace falta un `vercel.json` vacío ni un proyecto remoto ahora.
-No se activan Cache Components, Partial Prefetching o React Compiler antes de
-una necesidad concreta. Turbopack usa el adaptador Tailwind del template oficial.
+`HOTTO_BUILD_DIR` separa caches: desarrollo `.next-mvp`, producción
+`.next-production`. El build no borra una cache de un servidor vivo. No activar
+Cache Components o servicios nuevos sin una necesidad concreta.

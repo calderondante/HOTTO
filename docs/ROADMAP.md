@@ -1,19 +1,18 @@
 # Roadmap
 
-1. **Bootstrap:** entorno reproducible, skills locales, documentación, config
-   Supabase y controles técnicos. Es el alcance de esta preparación.
-2. **Validación editorial:** cotejar las 34 materias con la referencia documental,
-   revisar fuentes y derechos, definir tipos de recurso y estados de publicación.
-3. **Datos y seguridad:** migraciones iniciales, RLS, tipos generados, pruebas de
-   acceso público y administrativo, políticas Storage y trazabilidad editorial.
-4. **Biblioteca pública:** listado de materias, fichas permanentes, filtros,
-   búsqueda y navegación accesible; trabajar con un conjunto autorizado pequeño.
-5. **Lector y administración:** carga diferida de PDF.js, permisos por documento,
-   sesiones verificadas, roles y herramientas editoriales.
-6. **Web institucional:** completar las secciones con información real y revisar
-   la identidad usando la referencia visual recibida.
-7. **Preparación de publicación:** SEO definitivo, accesibilidad, rendimiento,
-   observabilidad, revisión de seguridad y despliegue autorizado en Vercel.
+1. **Bootstrap integrado:** PR #1 fusionado con CI aprobado; 19 skills conservadas.
+2. **MVP de biblioteca:** rutas, 34 materias, dos pilotos, 13 muestras, búsqueda,
+   filtros, fichas, PDFs originales y navegación móvil. Ver VALIDACION_MVP.md.
+3. **Validación editorial pendiente:** cotejo primario del plan y bibliografía
+   real; origen, licencias, ediciones y citas jurídicas comprobadas.
+4. **Datos y seguridad pendientes:** base de pruebas autorizada, migración SQL,
+   pruebas RLS/GRANT, tipos generados, adaptador de repositorio y Storage privado.
+5. **Lector y administración posteriores:** visor PDF.js con carga diferida,
+   roles editoriales y trazabilidad, después de validar permisos de archivos.
+6. **Institucional posterior:** completar datos reales de comunidad, eventos,
+   referentes y asociados; no crear enlaces vacíos ni acciones fingidas.
+7. **Publicación autorizada posterior:** dominio, SEO de producción, revisión
+   final de contenido, accesibilidad/rendimiento y deployment.
 
-No hay plazos estimados ni funcionalidades declaradas como completadas por
-estar mencionadas aquí. Cada fase requiere controles que ejerciten su comportamiento.
+Sin cronograma comprometido. Una estructura SQL preparada no equivale a una
+base validada; un ejemplo de recurso no equivale a una bibliografía publicada.

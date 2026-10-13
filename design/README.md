@@ -1,6 +1,7 @@
-# Referencias de diseño
+# Referencia visual HOTTO
 
-La imagen de referencia de HOTTO se incorporará aquí cuando esté disponible y
-se confirme su permiso de uso. Identidad confirmada: negro, dorado, violeta y
-blanco. Los valores actuales de CSS son provisionales; no son una extracción
-de una imagen que aún no recibimos.
+`referencia-hotto.png` es la lámina proporcionada por el usuario, convertida del
+JPEG original sin cambios de píxeles y sin metadatos. Se usa como referencia de
+marca, jerarquía y composición, no como captura de la aplicación implementada.
+Las decisiones están en `docs/DISENO.md`. Las capturas del MVP se guardan en
+`capturas/` después de la verificación con navegador.

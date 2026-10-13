@@ -2,7 +2,8 @@
 
 Repositorio seleccionado: `calderondante/HOTTO`, checkout `/workspace/HOTTO`.
 Inicialmente estaba vacío, en una rama local sin commits llamada `work`, y
-GitHub no devolvía refs. La preparación se realiza en `setup/hotto-bootstrap`.
+GitHub no devolvía refs. El bootstrap se fusionó vía PR #1; el MVP se desarrolla en
+`feature/hotto-biblioteca-mvp`.
 El estado final de publicación y las verificaciones ejecutadas se registrarán
 en `docs/VALIDACION.md`.
 
@@ -11,7 +12,7 @@ en `docs/VALIDACION.md`.
 | Elemento | Persistencia |
 | --- | --- |
 | Fuente, config, docs, scripts, skills y lockfiles | Git, después de commit y push confirmado |
-| `node_modules`, `.next`, `.cache` | Generados y excluidos; reconstruir con scripts |
+| `node_modules`, `.next*`, `.cache` | Generados y excluidos; reconstruir con scripts |
 | Procesos web, navegador y contenedores | Reiniciar por sesión; no sobreviven por estar versionados |
 | Install Script y Start Skill cloud | Borrador de configuración, sujeto a guardado/publicación del entorno |
 | `.env.local`, sesiones y credenciales externas | Solo estado local o configuración segura; nunca Git |
@@ -28,15 +29,16 @@ bash scripts/setup-cloud.sh
 
 Start Skill debe indicar: usar el checkout existente, sin worktrees salvo pedido
 explícito; leer `AGENTS.md`; ejecutar setup si faltan dependencias; iniciar
-`bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000` en un proceso mantenido
-por las herramientas de la sesión; comprobar HTTP 200 y el texto HOTTO, revisar
+`HOTTO_BUILD_DIR=.next-mvp bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000` en un proceso mantenido
+por las herramientas de la sesión; comprobar HTTP 200 en /biblioteca y 34 tarjetas en /biblioteca/materias, revisar
 errores y, cuando haya tareas de interfaz, aplicar `next-dev-loop` con MCP y el
-navegador local. No mostrar links de preview a direcciones de loopback en onboarding.
+navegador local. Capturar pantallas del MVP sin presentar links de loopback como una URL pública.
 
-Ejecutar build/verificación con el servidor de desarrollo detenido. No borrar
-`.next` mientras está activo. Supabase se arranca con `scripts/supabase.sh start`
-solo cuando la tarea requiera servicios de datos; no necesita proyectos remotos.
-No imprimir ni registrar claves que devuelve su CLI. El setup no reinicia datos.
+Build/start usan `.next-production`, separados de `.next-mvp`: no borrar caches
+de servidores vivos ni terminar procesos ajenos. Esta entrega no arranca Supabase
+local: el intento anterior de bajar PostgreSQL excedía el espacio disponible.
+No repetir descargas pesadas. La base remota queda para una fase autorizada.
+No imprimir credenciales; el setup no reinicia datos.
 
 ## Red
 
@@ -92,3 +94,24 @@ No se desactiva verificación TLS. Mantener los mismos argumentos en cada shell.
 La CLI de Supabase tiene fallback oficial de ECR a GHCR. Si ECR está bloqueado,
 puede fijarse `SUPABASE_INTERNAL_IMAGE_REGISTRY=ghcr.io` para el comando de arranque,
 con las mismas versiones de servicios; no se sustituyen imágenes por terceros.
+
+## Estado observado en el MVP
+
+GitHub CLI permitió revisar CI, fusionar PR #1 y trabajar en la rama nueva.
+El registro/documentación shadcn y Supabase respondieron correctamente en esta
+sesión; se agregaron componentes selectivamente sin reinstalar las skills.
+Drive y los dos hosts UNLaM continuaron bloqueados con CONNECT 403. El borrador
+agrega esos tres dominios a los cuatro anteriores, conservando la configuración.
+Guardar un borrador no publica la configuración ni cambia la sesión actual.
+La única acción de interfaz pendiente, si no se publicó todavía, es publicar
+el borrador revisado del entorno. Se guarda la revisión final de la rama por SHA.
+
+Node 24.19.0, pnpm 11.25.0, Next 16.4.0 y React 19.3.0 conservados. Se agregó
+Base UI 1.9.0, fijado en package y lockfile, para los componentes oficiales.
+Un servidor preexistente en 3000 se preservó: el desarrollo propio usa 3001 y
+`.next-mvp`; en una sesión nueva usar 3000 si está libre. La verificación HTTP de
+producción utiliza un puerto libre y termina solo su proceso.
+
+El install script puede reconstruir el proyecto con dependencias congeladas y
+skills versionadas. Los scripts no requieren credenciales Supabase ni Docker.
+La ejecución de la migración/RLS no fue probada; ver BASE_DE_DATOS.md.
