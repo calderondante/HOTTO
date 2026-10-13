@@ -4,18 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "HOTTO_BUILD_DIR=.next-production next build",
+    "start": "HOTTO_BUILD_DIR=.next-production next start",
     "lint": "eslint . --max-warnings 0",
-    "typecheck": "next typegen && tsc --noEmit",
+    "typecheck": "HOTTO_BUILD_DIR=.next-production next typegen && tsc --noEmit",
     "setup": "bash scripts/setup-cloud.sh",
     "verify": "bash scripts/verify-setup.sh",
     "skills:check": "node scripts/check-integrity.mjs",
     "smoke": "node scripts/smoke.mjs",
     "supabase": "bash scripts/supabase.sh",
-    "ui": "shadcn"
+    "ui": "shadcn",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:browser": "node scripts/browser-mvp.mjs"
   },
   "dependencies": {
+    "@base-ui/react": "1.9.0",
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.117.3",
     "class-variance-authority": "0.7.1",
@@ -44,5 +47,6 @@
   "packageManager": "pnpm@11.25.0",
   "engines": {
     "node": ">=24.19.0 <25"
-  }
+  },
+  "type": "module"
 }

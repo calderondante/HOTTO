@@ -20,5 +20,5 @@ bash scripts/pnpm.sh peers check
 node scripts/check-integrity.mjs
 bash scripts/pnpm.sh exec supabase --version
 bash scripts/pnpm.sh exec shadcn info --json > .cache/shadcn-info.json
-bash scripts/pnpm.sh exec next typegen
+HOTTO_BUILD_DIR=.next-production bash scripts/pnpm.sh exec next typegen
 echo 'Dependencias y herramientas preparadas. Ejecutar bash scripts/verify-setup.sh.'
