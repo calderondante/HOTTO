@@ -1,0 +1,9 @@
+engineStrict: true
+saveExact: true
+strictPeerDependencies: true
+allowBuilds:
+  agent-browser: false
+  sharp: false
+  unrs-resolver: false
+minimumReleaseAgeExclude:
+  - agent-browser@0.39.1
