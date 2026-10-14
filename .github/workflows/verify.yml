@@ -1,9 +1,9 @@
-name: Verify bootstrap
+name: Verify HOTTO
 
 on:
   pull_request:
   push:
-    branches: [main, setup/hotto-bootstrap]
+    branches: [main, setup/hotto-bootstrap, feature/hotto-biblioteca-mvp]
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@a8198c4bff370c8506180b035930dea56dbd5288 # v5, Node 24
       - name: Install frozen dependencies and verify local skills
         run: bash scripts/setup-cloud.sh
-      - name: Types, lint, build and production smoke
+      - name: Dataset tests, types, lint, build and production routes
         shell: bash
         run: |
           set +e

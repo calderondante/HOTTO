@@ -1,65 +1,62 @@
 # HOTTO
 
-Bootstrap de desarrollo de una plataforma para la comunidad jurídica argentina.
-La biblioteca será el producto principal. Este repositorio prepara el entorno:
-solo hay una pantalla técnica mínima, sin catálogo, cuentas ni administración.
+Comunidad jurídica y biblioteca digital. Primer MVP: 34 materias de Abogacía,
+dos pilotos, búsqueda, filtros, fichas relacionadas y navegación responsive.
+Los 13 recursos son demostraciones identificadas, con dos PDF originales de
+prueba. No requiere cuenta ni credenciales Supabase.
 
 ## Reconstrucción
 
-Requisitos: Node.js 24.19+ de la rama 24 LTS, npm, Git y Bash. La versión de pnpm
-está fijada en `package.json`; los scripts usan esa versión sin instalación global.
+Node.js 24.19+ de la rama 24 LTS, npm, Git y Bash; pnpm fijado en package.json.
 
 ```bash
 bash scripts/setup-cloud.sh
 bash scripts/verify-setup.sh
-bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000
+HOTTO_BUILD_DIR=.next-mvp bash scripts/pnpm.sh dev --hostname 127.0.0.1 --port 3000
 ```
 
-`setup-cloud.sh` instala con `--frozen-lockfile`, valida las skills versionadas y
-prepara los tipos de Next.js. Es idempotente y no regenera skills ni configura
-servicios remotos. `verify-setup.sh` comprueba integridad, descubrimiento de skills,
-TypeScript, ESLint, build y una respuesta funcional del servidor de producción.
-La comprobación HTTP usa un puerto libre y termina su propio servidor.
+Setup usa frozen-lockfile, conserva las 19 skills versionadas y no crea servicios
+remotos. Verify comprueba integridad, descubrimiento de skills, dataset/búsqueda,
+TypeScript, ESLint, build y 51 páginas de producción, filtros y PDF. Build/start
+usan `.next-production`, separado del desarrollo; el smoke termina su propio
+servidor y no toca otros procesos. No borrar caches de servidores vivos.
 
-Si ya usás el pnpm fijado, `pnpm dev`, `pnpm typecheck`, `pnpm lint` y `pnpm build`
-funcionan directamente. En Codex Cloud conviene el wrapper `scripts/pnpm.sh`,
-que mantiene las cachés en `.cache/` y conserva las credenciales existentes.
-
-## Supabase y secretos
-
-No se requieren credenciales para instalar, compilar o ver la pantalla inicial.
-`.env.example` declara las variables públicas para una integración futura; no
-contiene valores. Crear `.env.local` cuando exista un proyecto autorizado y
-mantenerlo fuera de Git. Nunca exponer claves privilegiadas en `NEXT_PUBLIC_*`.
-
-La configuración local está en `supabase/config.toml` (PostgreSQL 17, Auth y
-Storage). Docker es necesario solo para arrancar ese stack:
+La comprobación de interfaz con Chromium y servidor iniciado es:
 
 ```bash
-bash scripts/supabase.sh start
-bash scripts/supabase.sh db query --local 'select current_database(), version();'
-bash scripts/supabase.sh stop
+HOTTO_TEST_URL=http://127.0.0.1:3000 node scripts/browser-mvp.mjs
 ```
 
-`supabase status` y `start` pueden imprimir claves locales: no copiar su salida
-a documentación ni commits. No hay buckets, tablas o migraciones de producto.
-No ejecutar `db reset`, `link`, `db push` ni despliegues remotos sin revisar su alcance.
+En el contenedor observado, Chromium requiere `AGENT_BROWSER_ARGS='--no-sandbox'`;
+en una máquina con sandbox de navegador funcional, omitirlo. El wrapper conserva
+el perfil y caches dentro del checkout, sin cambiar HOME. Browser checks requieren
+Chromium; CI ejecuta pruebas de datos y smoke HTTP, no simula un navegador.
 
-## Codex Cloud
+## Rutas
 
-Install Script: `cd /workspace/HOTTO && bash scripts/setup-cloud.sh`.
-Las instrucciones de Start Skill se describen en [docs/ENTORNO.md](docs/ENTORNO.md).
-Cada tarea ya está aislada: usar este checkout, sin crear worktrees salvo pedido
-explícito. Los procesos deben arrancarse en cada sesión; no forman parte de la
-persistencia de Git ni del snapshot de dependencias.
+`/`, `/biblioteca`, `/biblioteca/materias`, `/biblioteca/materias/[slug]`,
+`/biblioteca/libros/[slug]`, `/biblioteca/jurisprudencia`,
+`/biblioteca/jurisprudencia/[slug]` y `/biblioteca/recursos/[slug]`.
+Las URLs del catálogo conservan filtros; los slugs inexistentes devuelven 404.
+El MVP conserva noindex por incluir contenido ficticio y no tener dominio final.
 
-## Guías
+## Datos y límites
 
-- [AGENTS.md](AGENTS.md): reglas para agentes y verificación.
-- [Producto](docs/PRODUCTO.md), [arquitectura](docs/ARQUITECTURA.md),
-  [datos](docs/BASE_DE_DATOS.md) y [roadmap](docs/ROADMAP.md).
-- [Diseño](docs/DISENO.md), [skills](docs/SKILLS.md) y [decisiones](docs/DECISIONES.md).
-- [Entorno y límites de validación](docs/ENTORNO.md).
+Los nombres/códigos de 34 materias se cotejaron entre dos fuentes secundarias.
+El cotejo institucional de Drive/UNLaM sigue pendiente por bloqueo de red.
+No se descargó ni distribuyó documentación de esa carpeta. No atribuir carácter
+oficial a los recursos de demostración: [fuentes](docs/DATOS_Y_FUENTES.md).
 
-El proyecto es compatible con el flujo estándar de Next.js en Vercel. No se ha
-creado un proyecto remoto ni realizado ningún despliegue.
+El dataset local es la fuente real del frontend. La migración Supabase prepara
+el modelo y RLS, pero **no fue aplicada contra PostgreSQL**. No se arrancó el
+stack Docker pesado ni se conectó una base remota. `.env.example` tiene valores
+vacíos; claves privilegiadas nunca deben aparecer en NEXT_PUBLIC_* ni Git.
+
+## Documentación
+
+[Validación MVP](docs/VALIDACION_MVP.md), [diseño](docs/DISENO.md),
+[arquitectura](docs/ARQUITECTURA.md), [datos](docs/BASE_DE_DATOS.md),
+[entorno cloud](docs/ENTORNO.md), [skills](docs/SKILLS.md),
+[roadmap](docs/ROADMAP.md) y [AGENTS.md](AGENTS.md).
+La validación histórica del bootstrap está en docs/VALIDACION.md.
+No se ha desplegado un sitio ni creado una base remota.

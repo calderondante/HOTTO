@@ -23,3 +23,16 @@ Pendiente: listado curricular validado, permisos documentales, identidad visual,
 esquema editorial, modelo de roles, búsqueda, hosting y proyecto Supabase remoto.
 No se implementaron políticas RLS porque todavía no se creó ninguna tabla de
 producto; son un requisito de la fase de datos.
+
+## MVP de biblioteca
+
+- PR #1 integrado mediante merge normal con checks aprobados, sin saltar protecciones.
+- Dataset local explícito; Supabase no conectado, SQL preparado pero no ejecutado.
+- 34 materias cotejadas entre dos transcripciones; no se atribuye validación primaria.
+- Solo dos pilotos con muestras originales; restantes materias vacías con orientación.
+- Referencia visual incorporada y adaptada a fichas, búsqueda y lectura móvil.
+- Componentes Base UI instalados desde el registro oficial, accesible en esta sesión.
+- URLs conservan filtros; slugs canónicos y fichas propias para los cinco tipos.
+- Noindex mantenido por datos ficticios; dominio/SEO de publicación quedan pendientes.
+- `.next-production` separa build/start de `.next-mvp`; no se matan procesos ajenos.
+- No se arranca PostgreSQL Docker pesado ni se crean recursos remotos.

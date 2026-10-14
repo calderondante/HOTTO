@@ -1,27 +1,22 @@
 # Producto
 
-HOTTO es una plataforma para una comunidad jurídica argentina, orientada a
-estudiantes de Abogacía, abogados en formación y profesionales. Se combinarán
-una web institucional y una biblioteca especializada, que tendrá prioridad.
+HOTTO es una comunidad jurídica argentina para estudiantes y profesionales.
+Este MVP prioriza la biblioteca pública en el mismo dominio: 34 materias,
+búsqueda, filtros, fichas de libros y casos, relaciones y navegación responsive.
+No requiere cuentas. El inicio institucional es preliminar; actividades,
+referentes, asociados, contacto y administración quedan para una etapa posterior.
 
-Secciones confirmadas: Inicio, Quiénes somos, Actividades y eventos, Referentes,
-Asociados y Biblioteca virtual. No están implementadas en el bootstrap.
+Pilotos: Introducción al Estudio del Derecho (2340, alias Introducción al Derecho)
+y Derecho Constitucional I (2304). Las otras 32 materias tienen su página y
+categorías, sin recursos atribuidos. Los 13 recursos actuales son demostraciones
+originales: seis libros, tres casos ficticios, una guía normativa, dos recorridos
+de lectura y un complemento. Solo dos libros incluyen PDF originales de prueba.
 
-La biblioteca pública no requerirá inicialmente cuentas ni suscripciones.
-Contendrá fichas con URLs permanentes, libros, manuales, doctrina,
-jurisprudencia relacionada con materias, legislación y recursos académicos.
-Se prevén búsqueda, lectura de documentos autorizados y panel administrativo.
+Los 34 nombres/códigos del plan de Abogacía 2018 UNLaM fueron cotejados entre dos
+transcripciones públicas; validación institucional pendiente. Se excluyeron
+Inglés I–IV y Computación I–II. No se importaron documentos de Drive.
+Ver [DATOS_Y_FUENTES.md](DATOS_Y_FUENTES.md).
 
-El alcance curricular informado es el plan de Abogacía 2018 de la Universidad
-Nacional de La Matanza: 40 asignaturas, excluyendo cuatro niveles de Inglés y
-dos de Computación, para un objetivo de 34 materias jurídicas.
-Es una referencia del pedido, todavía sin cotejo documental; no se inventaron
-nombres, programas ni contenidos académicos.
-
-Referencia aportada:
-https://drive.google.com/drive/folders/1UK-M7GRvDg93cFms75HmMINAuY3HPOZb
-
-Antes de importar contenido se deberán confirmar el listado curricular, las
-fuentes, los metadatos, los derechos de distribución y el flujo editorial.
-Los documentos sin permiso de lectura pública podrán tener solo metadatos y
-enlaces a fuentes autorizadas, según la revisión de cada caso.
+La siguiente entrega debe validar el plan contra fuente primaria, incorporar
+bibliografía real con procedencia y permisos, y probar la base remota antes de
+habilitar distribución o administración. No usar los ejemplos como fuentes jurídicas.

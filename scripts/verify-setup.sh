@@ -26,9 +26,10 @@ node --input-type=module -e '
   console.log(`${skills.length} skills locales descubiertas en .agents/skills.`);
   console.log(codexInstalled ? "Asociación Codex verificada." : "Sin runtime Codex: verificada la ubicación compatible; ejecución del agente no aplicable.");
 '
+bash scripts/pnpm.sh test
 bash scripts/pnpm.sh typecheck
 bash scripts/pnpm.sh lint
 bash scripts/pnpm.sh build
 bash scripts/pnpm.sh smoke
 git diff --check
-echo 'Verificación del bootstrap completada. No incluye funcionalidades de producto ni servicios remotos.'
+echo 'Verificación del MVP completada: skills, dataset, búsqueda, tipos, lint, build y rutas de producción. Sin validación PostgreSQL ni servicios remotos.'
