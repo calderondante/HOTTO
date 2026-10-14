@@ -14,8 +14,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 HOTTO es una plataforma para la comunidad jurídica argentina. La biblioteca es
 el producto principal y debe ser pública sin cuentas obligatorias inicialmente.
-Consultar `docs/PRODUCTO.md` y `docs/ROADMAP.md`. El primer MVP contiene biblioteca y dataset local de demostración;
-no implica conexión Supabase, lector avanzado ni administración.
+Consultar `docs/PRODUCTO.md`, `docs/ROADMAP.md` y `docs/BACKEND_ADMIN.md`. El backend
+y panel privado están implementados; necesitan un proyecto Supabase configurado.
+Sin conexión, conservar la biblioteca de demostración y cerrar la administración.
 No inventar materias, bibliografía, datos universitarios ni permisos de distribución.
 
 ## Entorno y arquitectura
@@ -40,19 +41,19 @@ adicionales de subdirectorios cuando corresponda. Preservar cambios del usuario.
 Leer el `SKILL.md` relevante antes de aplicar una skill; no cargar todas a la vez.
 Los identificadores de la tabla corresponden a los nombres reales instalados.
 
-| Tarea | Skills |
-| --- | --- |
-| Diseño visual | `emil-design-eng`, `apple-design` |
-| Animaciones | `animate`, `review-animations` |
-| Auditoría de movimiento | `improve-animations`, `find-animation-opportunities` |
-| Rendimiento y términos de movimiento | `animation-performance`, `animation-vocabulary` |
-| Auditoría visual y accesibilidad | `web-design-guidelines`, `break-ui` |
-| Interacción web móvil | `mobile-native` |
-| React y composición | `vercel-react-best-practices`, `vercel-composition-patterns` |
-| Runtime Next.js | Documentación actual y `next-dev-loop` |
-| Datos, Auth y Storage | `supabase`, `supabase-postgres-best-practices` |
-| Componentes | `shadcn`; `pick-ui-library` solo con invocación explícita |
-| Prototipos alternativos | `prototype` solo con invocación explícita |
+| Tarea                                | Skills                                                       |
+| ------------------------------------ | ------------------------------------------------------------ |
+| Diseño visual                        | `emil-design-eng`, `apple-design`                            |
+| Animaciones                          | `animate`, `review-animations`                               |
+| Auditoría de movimiento              | `improve-animations`, `find-animation-opportunities`         |
+| Rendimiento y términos de movimiento | `animation-performance`, `animation-vocabulary`              |
+| Auditoría visual y accesibilidad     | `web-design-guidelines`, `break-ui`                          |
+| Interacción web móvil                | `mobile-native`                                              |
+| React y composición                  | `vercel-react-best-practices`, `vercel-composition-patterns` |
+| Runtime Next.js                      | Documentación actual y `next-dev-loop`                       |
+| Datos, Auth y Storage                | `supabase`, `supabase-postgres-best-practices`               |
+| Componentes                          | `shadcn`; `pick-ui-library` solo con invocación explícita    |
+| Prototipos alternativos              | `prototype` solo con invocación explícita                    |
 
 Leer la documentación incluida en `node_modules/next/dist/docs/` cuando exista.
 Si no está disponible, consultar documentación oficial de la versión fijada,
@@ -104,5 +105,21 @@ No hacer force push, resetear trabajo ajeno ni incorporar secretos. Revisar
 `git diff --check`, `git status --short` y archivos ignorados antes de commit.
 Actualizar documentación y lockfile cuando cambien requisitos. Publicar ramas
 y abrir PR solo cuando el usuario haya autorizado esa operación; no fusionarlos
-ni desplegar automáticamente. El usuario autorizó fusionar el bootstrap y publicar la rama/PR del MVP; no fusionar
-el PR del MVP ni desplegar sin una nueva instrucción.
+ni desplegar automáticamente. Para esta fase, el usuario autorizó revisar y fusionar PR #2 si corresponde,
+publicar feature/hotto-backend-admin y abrir PR #3. No fusionar PR #3 ni desplegar
+sin una nueva instrucción. Aplicar migraciones remotas solo a una base de desarrollo
+configurada y autorizada; no crear servicios remotos por iniciativa propia.
+
+## Backend documental
+
+Validar Auth real y membresía activa en cada operación; no introducir cuentas
+ficticias ni vistas que omitan autorización para probar el panel. La aplicación
+usa clave pública y sesión de usuario, nunca service-role. RLS debe mantenerse
+como límite también para solicitudes directas. Lectura pública requiere permisos
+verificados y vigentes, revisión y publicación. Evidencia de permisos es privada.
+
+Ejecutar `bash scripts/test-postgres.sh` para cambios de migraciones/RLS. Requiere
+PostgreSQL nativo o base efímera loopback `hotto_test_*`; no descargar contenedores
+pesados en Cloud. Los fixtures auth/storage son exclusivos de pruebas SQL y no
+simulan login en la aplicación. Distinguir siempre pruebas SQL locales de pruebas
+remotas completas; ver docs/VALIDACION_BACKEND.md.
