@@ -47,3 +47,5 @@ next-env.d.ts
 /.cache/
 /.agents/skills/.cache/
 /.agents/skills/.git/
+
+.next-admin/

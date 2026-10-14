@@ -1,7 +1,8 @@
+import { getCatalog } from "@/lib/library/repository";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { subjects } from "@/lib/library/data";
-import { getCatalog, getSubject } from "@/lib/library/repository";
+import { getSubject } from "@/lib/library/repository";
 import { parseLibraryQuery } from "@/lib/library/query";
 import { resourceKinds, kindLabels } from "@/lib/library/types";
 import {
@@ -11,6 +12,8 @@ import {
   ExploreLink,
 } from "@/components/library/presentation";
 import { CatalogExplorer } from "@/components/library/catalog-explorer";
+import { loadCatalog, type CatalogResult } from "@/lib/library/backend";
+import { LibraryConnectionError } from "@/components/library/connection-error";
 import { Badge } from "@/components/ui/badge";
 
 type Props = {
@@ -33,7 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Subject({ params, searchParams }: Props) {
   const subject = getSubject((await params).slug);
   if (!subject) notFound();
-  const items = getCatalog().filter((r) => r.subjectIds.includes(subject.id));
+  const initial = parseLibraryQuery(await searchParams);
+  let result: CatalogResult | null = null;
+  try {
+    result = await loadCatalog({ ...initial, subject: subject.id });
+  } catch {}
+  const items = result?.remote
+    ? result.items
+    : getCatalog().filter((r) => r.subjectIds.includes(subject.id));
   return (
     <main id="contenido">
       <div className="shell">
@@ -62,19 +72,27 @@ export default async function Subject({ params, searchParams }: Props) {
         <div className="category-summary" aria-label="Recursos por categoría">
           {resourceKinds.map((kind) => (
             <div key={kind}>
-              <strong>{items.filter((r) => r.kind === kind).length}</strong>
+              <strong>
+                {result?.remote
+                  ? "—"
+                  : items.filter((r) => r.kind === kind).length}
+              </strong>
               <span>{kindLabels[kind]}</span>
             </div>
           ))}
         </div>
-        {items.length ? (
+        {!result ? (
+          <LibraryConnectionError />
+        ) : items.length || result.remote ? (
           <>
-            <DemoNotice />
+            {!result?.remote && <DemoNotice />}
             <CatalogExplorer
               action={`/biblioteca/materias/${subject.slug}`}
               items={items}
+              remote={result?.remote}
+              total={result?.total}
               subjects={subjects}
-              initial={parseLibraryQuery(await searchParams)}
+              initial={initial}
               fixedSubject={subject.id}
             />
           </>

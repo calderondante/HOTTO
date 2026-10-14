@@ -27,12 +27,14 @@ export function resourceHref(r: Resource) {
   return `/biblioteca/${section}/${r.slug}`;
 }
 export function authorLabel(r: Resource) {
+  if (r.publicData) return r.publicData.authors;
   return r.authorIds
     .map((id) => authors.find((a) => a.id === id)?.name)
     .filter(Boolean)
     .join(" · ");
 }
 export function fileFor(r: Resource) {
+  if (r.publicData) return r.publicData.files[0];
   const file = files.find((f) => f.id === r.fileId);
   return file &&
     file.editionId === r.editionId &&
@@ -44,6 +46,7 @@ export function fileFor(r: Resource) {
     : undefined;
 }
 export function editionFor(r: Resource) {
+  if (r.publicData) return r.publicData.edition;
   return editions.find((e) => e.id === r.editionId);
 }
 export function toCatalogItem(r: Resource): CatalogItem {

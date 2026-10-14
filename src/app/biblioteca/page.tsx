@@ -1,9 +1,12 @@
+import { getCatalog } from "@/lib/library/repository";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, Scale } from "lucide-react";
 import { CatalogExplorer } from "@/components/library/catalog-explorer";
 import { Breadcrumbs, DemoNotice } from "@/components/library/presentation";
-import { getCatalog } from "@/lib/library/repository";
+import { loadCatalog, type CatalogResult } from "@/lib/library/backend";
+import { libraryMode } from "@/lib/supabase/config";
+import { LibraryConnectionError } from "@/components/library/connection-error";
 import { subjects } from "@/lib/library/data";
 import { parseLibraryQuery } from "@/lib/library/query";
 
@@ -18,6 +21,13 @@ export default async function Library({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const initial = parseLibraryQuery(await searchParams);
+  const demo = libraryMode() === "demo";
+  let result: CatalogResult | null = null;
+  try {
+    result = await loadCatalog(initial);
+  } catch {
+    /* Render an explicit connection error; never replace real data with fixtures. */
+  }
   return (
     <main id="contenido">
       <section className="library-hero">
@@ -55,7 +65,10 @@ export default async function Library({
               <strong>2</strong> materias piloto
             </span>
             <span>
-              <strong>13</strong> recursos de muestra
+              <strong>
+                {demo ? getCatalog().length : (result?.total ?? "—")}
+              </strong>{" "}
+              {demo ? "recursos de muestra" : "recursos publicados"}
             </span>
             <span className="open-access">Acceso abierto</span>
           </div>
@@ -80,12 +93,24 @@ export default async function Library({
             <ArrowUpRight size={21} aria-hidden="true" />
           </Link>
         </div>
-        <DemoNotice />
-        <CatalogExplorer
-          items={getCatalog()}
-          subjects={subjects}
-          initial={initial}
-        />
+        {demo && <DemoNotice />}
+        <p className="source-note">
+          <Link href="/biblioteca/demo">
+            Explorar la biblioteca de demostración
+          </Link>{" "}
+          · Los ejemplos se conservan fuera del catálogo definitivo.
+        </p>
+        {result ? (
+          <CatalogExplorer
+            items={result.remote ? result.items : getCatalog()}
+            remote={result.remote}
+            total={result.total}
+            subjects={subjects}
+            initial={initial}
+          />
+        ) : (
+          <LibraryConnectionError />
+        )}
       </div>
     </main>
   );

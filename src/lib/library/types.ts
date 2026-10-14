@@ -54,8 +54,8 @@ export interface Edition {
   id: string;
   workId: string;
   label: string;
-  year: number;
-  publisher: string;
+  year: number | null;
+  publisher: string | null;
 }
 export interface FileAsset {
   id: string;
@@ -63,7 +63,7 @@ export interface FileAsset {
   path: string;
   mime: "application/pdf";
   licenseId: string;
-  pages: number;
+  pages: number | null;
 }
 export interface Jurisprudence {
   court: string;
@@ -90,6 +90,13 @@ export interface Resource {
   editorialStatus: EditorialStatus;
   demo: boolean;
   cover: "plum" | "gold" | "ink" | "cream";
+  publicData?: {
+    authors: string;
+    edition?: Edition;
+    files: FileAsset[];
+    links: { label: string; url: string }[];
+    source: { label: string; urls: string[] };
+  };
 }
 export interface CatalogItem {
   id: string;

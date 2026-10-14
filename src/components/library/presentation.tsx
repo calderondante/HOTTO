@@ -74,11 +74,13 @@ export function BookCover({
   subtitle,
   tone,
   large = false,
+  demo = true,
 }: {
   title: string;
   subtitle: string;
   tone: CatalogItem["cover"];
   large?: boolean;
+  demo?: boolean;
 }) {
   return (
     <div
@@ -92,7 +94,8 @@ export function BookCover({
         <span className="cover-subtitle">{subtitle}</span>
       </div>
       <span className="cover-edition">
-        EDICIÓN DE DEMOSTRACIÓN <span>H.</span>
+        {demo ? "EDICIÓN DE DEMOSTRACIÓN" : "REFERENCIA BIBLIOGRÁFICA"}{" "}
+        <span>H.</span>
       </span>
     </div>
   );
@@ -117,6 +120,7 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
               title={item.title}
               subtitle={item.subtitle}
               tone={item.cover}
+              demo={item.demo}
             />
           </div>
         ) : (
@@ -124,7 +128,9 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
             <Icon size={40} strokeWidth={1} aria-hidden="true" />
             <span>
               {item.kind === "jurisprudence"
-                ? "CASO DE ESTUDIO"
+                ? item.demo
+                  ? "CASO DE ESTUDIO"
+                  : "JURISPRUDENCIA"
                 : "GUÍA DE LECTURA"}
             </span>
           </div>
@@ -142,7 +148,8 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
         <Badge variant={item.available ? "secondary" : "outline"}>
           {item.available ? (
             <>
-              <Download size={12} aria-hidden="true" /> PDF de muestra
+              <Download size={12} aria-hidden="true" />{" "}
+              {item.demo ? "PDF de muestra" : "PDF disponible"}
             </>
           ) : item.kind === "book" ? (
             "Referencia sin archivo"
@@ -150,7 +157,7 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
             "Muestra de lectura"
           )}
         </Badge>
-        <span className="tiny-label">DEMO</span>
+        {item.demo && <span className="tiny-label">DEMO</span>}
       </div>
     </article>
   );
