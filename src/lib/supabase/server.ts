@@ -2,7 +2,7 @@ import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
-import type { Database } from "@/lib/library/database.types";
+import type { Database } from "@/lib/library/database.generated";
 import { supabaseConfig } from "./config";
 export async function sessionClient() {
   const config = supabaseConfig();

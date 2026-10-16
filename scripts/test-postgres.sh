@@ -32,9 +32,11 @@ fi
 "$pg_bin/psql" "${args[@]}" -v ON_ERROR_STOP=1 -f tests/postgres/platform.sql > "$run_dir/migrations.log"
 for migration in supabase/migrations/*.sql; do "$pg_bin/psql" "${args[@]}" -v ON_ERROR_STOP=1 -f "$migration" >> "$run_dir/migrations.log"; done
 "$pg_bin/psql" "${args[@]}" -v ON_ERROR_STOP=1 -f tests/postgres/authorization.sql > "$run_dir/authorization.log"
+"$pg_bin/psql" "${args[@]}" -v ON_ERROR_STOP=1 -f tests/postgres/jurisprudence.sql > "$run_dir/jurisprudence.log"
 "$pg_bin/psql" "${args[@]}" -Atc "select json_object_agg(table_name,cols) from (select table_name,array_agg(column_name order by ordinal_position) cols from information_schema.columns where table_schema='public' group by table_name) t" > "$run_dir/schema.json"
 node scripts/check-schema-contract.mjs "$run_dir/schema.json"
 cp "$run_dir/authorization.log" .cache/postgres-authorization.log
 tail -n 1 "$run_dir/authorization.log"
+tail -n 1 "$run_dir/jurisprudence.log"
 "$pg_bin/psql" "${args[@]}" -Atc "select version(); select count(*) || ' seeded subjects' from public.subjects"
 echo "PostgreSQL test evidence: $run_dir"
