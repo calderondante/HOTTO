@@ -70,7 +70,21 @@ export interface Jurisprudence {
   docket: string;
   date: string;
   topic: string;
-  holding: string;
+  holding: string | null;
+  jurisdiction?: string;
+  chamber?: string;
+  judicialId?: string | null;
+  officialUrl?: string | null;
+  officialVerifiedAt?: string | null;
+  legalIssue?: string;
+  facts?: string;
+  decision?: string;
+  reasoning?: string;
+  significance?: string;
+  applicableLaw?: string;
+  analysisState?: "none" | "draft" | "review" | "approved";
+  seoLevel?: "A" | "B" | "C";
+  approvedAt?: string | null;
 }
 export interface Resource {
   id: string;
@@ -112,6 +126,7 @@ export interface CatalogItem {
   demo: boolean;
   cover: Resource["cover"];
   href: string;
+  external?: boolean;
 }
 export interface LibraryQuery {
   q: string;

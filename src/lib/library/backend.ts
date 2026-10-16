@@ -38,7 +38,7 @@ export async function loadCatalog(
   const payload = record(result.data);
   if (!Array.isArray(payload.items) || typeof payload.total !== "number")
     throw Error("Respuesta del catálogo inválida.");
-  const items = payload.items.map((value) => {
+  const items: CatalogItem[] = payload.items.map((value) => {
     const r = record(value);
     if (
       typeof r.id !== "string" ||
@@ -63,6 +63,20 @@ export async function loadCatalog(
       href: `/biblioteca/${kind === "book" ? "libros" : kind === "jurisprudence" ? "jurisprudencia" : "recursos"}/${r.slug}`,
     };
   });
+  const caseIds = items.filter((item) => item.kind === "jurisprudence").map((item) => item.id);
+  if (caseIds.length) {
+    const cases = await client.from("jurisprudence").select("work_id,official_url,seo_level,court").in("work_id", caseIds);
+    if (cases.error) throw Error("No pudimos resolver los enlaces judiciales.");
+    const byId = new Map(cases.data.map((j) => [j.work_id, j]));
+    for (const item of items) {
+      const j = byId.get(item.id);
+      if (j) item.authors = item.authors || j.court;
+      if (j?.seo_level === "A" && j.official_url) {
+        item.href = j.official_url;
+        item.external = true;
+      }
+    }
+  }
   return { items, total: payload.total, remote: true };
 }
 export const loadDetail = cache(
@@ -138,6 +152,20 @@ export const loadDetail = cache(
             date: judgment.decision_date,
             topic: judgment.topic,
             holding: judgment.holding,
+            jurisdiction: judgment.jurisdiction,
+            chamber: judgment.chamber,
+            judicialId: judgment.judicial_id,
+            officialUrl: judgment.official_url,
+            officialVerifiedAt: judgment.official_verified_at,
+            legalIssue: judgment.legal_issue,
+            facts: judgment.facts,
+            decision: judgment.decision,
+            reasoning: judgment.reasoning,
+            significance: judgment.significance,
+            applicableLaw: judgment.applicable_law,
+            analysisState: judgment.analysis_state === "approved" ? "approved" : judgment.analysis_state === "review" ? "review" : judgment.analysis_state === "draft" ? "draft" : "none",
+            seoLevel: judgment.seo_level === "C" ? "C" : judgment.seo_level === "B" ? "B" : "A",
+            approvedAt: judgment.approved_at,
           }
         : undefined,
       publicData: {

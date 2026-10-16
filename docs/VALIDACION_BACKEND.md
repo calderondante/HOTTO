@@ -1,5 +1,8 @@
 # Validación del backend documental — 14/10/2026
 
+Documento histórico de la Fase 3. Para el estado remoto vigente, consultar
+`docs/PHASE4_SUPABASE_LIVE.md`.
+
 ## Consolidación
 
 PR #2 revisado y fusionado mediante merge normal, sin bypass ni force, con sus
