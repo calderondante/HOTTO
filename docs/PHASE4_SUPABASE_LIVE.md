@@ -10,8 +10,8 @@ confirmó que tenía una cuenta Auth preexistente, ninguna tabla de aplicación,
 ningún objeto Storage y ningún historial de migraciones. Las variables Cloud
 coinciden con la URL/ID especificados; sus valores secretos nunca se registraron.
 
-Las seis migraciones versionadas están aplicadas, incluidas las 34 materias, y
-`supabase_migrations.schema_migrations` tiene seis entradas cuyo SQL almacenado
+Las siete migraciones versionadas están aplicadas, incluidas las 34 materias, y
+`supabase_migrations.schema_migrations` tiene siete entradas cuyo SQL almacenado
 coincide byte a byte con los archivos locales. Hay 15 tablas públicas, todas con
 RLS; `library-private` es un bucket privado con MIME PDF y tamaño máximo de
 25 MiB. Se generaron tipos reales del esquema remoto en
@@ -42,6 +42,8 @@ expediente, fecha, tema, fuente oficial publicada, verificación registrada del
 enlace, documento revisado y permiso de lectura verificado. No se requiere PDF
 ni se atribuyen derechos de distribución a la sentencia oficial. Los índices
 únicos de URL y `(tribunal, identificador)` previenen duplicados comunes.
+Una referencia secundaria publicada no hace visible el fallo si el documento
+oficial coincidente está en borrador o pierde su permiso.
 
 El RPC `search_jurisprudence` pagina de a 30 y filtra texto por carátula,
 tema, tribunal, sala, expediente, identificador y keywords, además de materia,
@@ -77,7 +79,7 @@ publicación automática de análisis IA.
 
 ## Evidencia y pendientes
 
-- PostgreSQL 17.11 nativo y desechable: seis migraciones desde cero, semilla,
+- PostgreSQL 17.11 nativo y desechable: siete migraciones desde cero, semilla,
   contrato de tipos, RLS, permisos, Storage, revocación y secuencia A/B/C;
   `bash scripts/test-postgres.sh` aprobado. Los fixtures se revierten y nunca
   se aplicaron a Supabase alojado.

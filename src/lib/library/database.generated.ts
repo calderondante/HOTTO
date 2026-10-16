@@ -40,6 +40,7 @@ export type Database = {
       active_administrator: { Args: never; Returns: boolean }
       document_public: { Args: { document_uuid: string }; Returns: boolean }
       document_ready: { Args: { document_uuid: string }; Returns: boolean }
+      judicial_source_public: { Args: { work_uuid: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

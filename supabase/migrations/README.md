@@ -14,9 +14,12 @@ las migraciones posteriores reemplazan sus políticas y agregan el flujo documen
    identificador único, búsqueda filtrada, fichas A/B/C y aprobación editorial.
 6. `20261016000002_jurisprudence_approval_integrity.sql`: atribución inmutable
    de aprobaciones e invalidación de una URL oficial modificada.
+7. `20261016000003_judicial_publication_boundary.sql`: exige que el documento
+   oficial coincidente esté publicado y habilitado, incluso si otra referencia
+   pública sigue asociada a la obra.
 
 Probadas desde cero en PostgreSQL 17.11 nativo con fixtures de plataforma aislados.
-Las seis están aplicadas al proyecto Supabase de desarrollo `trkoraszozabtywkfvin`;
+Las siete están aplicadas al proyecto Supabase de desarrollo `trkoraszozabtywkfvin`;
 el historial remoto registra el SQL exacto de cada archivo. La red de Cloud bloquea
 la conexión PostgreSQL TCP de la CLI, por lo que se aplicaron por la API HTTPS
 oficial (`supabase db query --linked`) tras ensayo transaccional con `rollback`,
