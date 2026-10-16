@@ -9,13 +9,13 @@ en `docs/VALIDACION.md`.
 
 ## Persistencia
 
-| Elemento | Persistencia |
-| --- | --- |
-| Fuente, config, docs, scripts, skills y lockfiles | Git, después de commit y push confirmado |
-| `node_modules`, `.next*`, `.cache` | Generados y excluidos; reconstruir con scripts |
-| Procesos web, navegador y contenedores | Reiniciar por sesión; no sobreviven por estar versionados |
-| Install Script y Start Skill cloud | Borrador de configuración, sujeto a guardado/publicación del entorno |
-| `.env.local`, sesiones y credenciales externas | Solo estado local o configuración segura; nunca Git |
+| Elemento                                          | Persistencia                                                         |
+| ------------------------------------------------- | -------------------------------------------------------------------- |
+| Fuente, config, docs, scripts, skills y lockfiles | Git, después de commit y push confirmado                             |
+| `node_modules`, `.next*`, `.cache`                | Generados y excluidos; reconstruir con scripts                       |
+| Procesos web, navegador y contenedores            | Reiniciar por sesión; no sobreviven por estar versionados            |
+| Install Script y Start Skill cloud                | Borrador de configuración, sujeto a guardado/publicación del entorno |
+| `.env.local`, sesiones y credenciales externas    | Solo estado local o configuración segura; nunca Git                  |
 
 ## Install Script y Start Skill
 
@@ -115,3 +115,18 @@ producción utiliza un puerto libre y termina solo su proceso.
 El install script puede reconstruir el proyecto con dependencias congeladas y
 skills versionadas. Los scripts no requieren credenciales Supabase ni Docker.
 La ejecución de la migración/RLS no fue probada; ver BASE_DE_DATOS.md.
+
+## Fase 3: backend documental
+
+PR #2 integrado; rama feature/hotto-backend-admin. El estado SQL anterior era
+histórico: las cuatro migraciones y RLS ahora se probaron en PostgreSQL 17.11
+nativo aislado, sin contenedores Cloud. Ver VALIDACION_BACKEND.md. No hay proyecto
+Supabase conectado; Auth/Storage HTTP siguen pendientes. El frontend conserva
+demo sin credenciales; el panel se cierra con explicación hasta configurar acceso.
+
+Start Skill actualizado debe consultar BACKEND_ADMIN.md y VALIDACION_BACKEND.md,
+iniciar `.next-admin` en puerto libre y verificar `/biblioteca`, `/biblioteca/demo`,
+34 materias y `/admin`. No exigir muestras en el catálogo real ni activar login
+simulado. Configuración remota por variables públicas de proyecto y bindings
+seguros de acceso administrativo de desarrollo; nunca imprimir sus valores.
+El borrador final fija el SHA de esta rama y requiere publicación desde la UI.

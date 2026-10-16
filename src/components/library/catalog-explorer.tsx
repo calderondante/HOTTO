@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, SlidersHorizontal, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,8 @@ export function CatalogExplorer({
   action = "/biblioteca",
   fixedSubject,
   fixedKind,
+  remote = false,
+  total,
 }: {
   items: CatalogItem[];
   subjects: readonly Subject[];
@@ -29,8 +31,59 @@ export function CatalogExplorer({
   action?: string;
   fixedSubject?: string;
   fixedKind?: "jurisprudence";
+  remote?: boolean;
+  total?: number;
 }) {
   const [query, setQuery] = useState(initial);
+  const [remoteItems, setRemoteItems] = useState(items),
+    [remoteTotal, setRemoteTotal] = useState(total ?? items.length),
+    [remoteError, setRemoteError] = useState(""),
+    [loading, setLoading] = useState(false),
+    [page, setPage] = useState(1);
+  const first = useRef(true);
+  useEffect(() => {
+    if (!remote) return;
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setLoading(true);
+      setRemoteError("");
+      const params = new URLSearchParams({
+        q: query.q,
+        materia: fixedSubject ?? query.subject,
+        tipo: fixedKind ?? query.kind,
+        pagina: String(page),
+      });
+      if (query.availableOnly) params.set("disponibles", "1");
+      try {
+        const response = await fetch(`/api/library?${params}`, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        const result = await response.json();
+        if (!response.ok) throw Error(result.error);
+        if (controller.signal.aborted) return;
+        setRemoteItems(result.items);
+        setRemoteTotal(result.total);
+      } catch (e) {
+        if (!controller.signal.aborted)
+          setRemoteError(
+            e instanceof Error
+              ? e.message
+              : "No pudimos consultar el catálogo.",
+          );
+      } finally {
+        if (!controller.signal.aborted) setLoading(false);
+      }
+    }, 250);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [remote, query, fixedSubject, fixedKind, page]);
   useEffect(() => {
     const restore = () => {
       const values = Object.fromEntries(
@@ -43,6 +96,10 @@ export function CatalogExplorer({
   }, []);
   const updateQuery = (next: LibraryQuery) => {
     setQuery(next);
+    if (remote) {
+      setPage(1);
+      setLoading(true);
+    }
     const params = new URLSearchParams();
     if (next.q) params.set("q", next.q);
     if (next.subject && !fixedSubject) params.set("materia", next.subject);
@@ -54,11 +111,13 @@ export function CatalogExplorer({
       `${action}${params.size ? `?${params}` : ""}`,
     );
   };
-  const filtered = filterCatalog(items, {
-    ...query,
-    subject: fixedSubject ?? query.subject,
-    kind: fixedKind ?? query.kind,
-  });
+  const filtered = remote
+    ? remoteItems
+    : filterCatalog(items, {
+        ...query,
+        subject: fixedSubject ?? query.subject,
+        kind: fixedKind ?? query.kind,
+      });
   const hasFilters = Boolean(
     query.q || query.subject || query.kind !== "all" || query.availableOnly,
   );
@@ -141,7 +200,7 @@ export function CatalogExplorer({
                 updateQuery({ ...query, availableOnly: e.target.checked })
               }
             />{" "}
-            Solo con PDF de muestra
+            {remote ? "Solo con PDF disponible" : "Solo con PDF de muestra"}
           </label>
           <Button type="submit" variant="secondary">
             Aplicar
@@ -153,7 +212,7 @@ export function CatalogExplorer({
         <h2> {fixedKind ? "Casos de estudio" : "Explorá el catálogo"}</h2>
         <div className="results-controls">
           <p role="status" aria-live="polite" aria-atomic="true">
-            <strong>{filtered.length}</strong>{" "}
+            <strong>{remote ? remoteTotal : filtered.length}</strong>{" "}
             {filtered.length === 1 ? "recurso" : "recursos"}
           </p>
           {hasFilters && (
@@ -163,7 +222,17 @@ export function CatalogExplorer({
           )}
         </div>
       </div>
-      {filtered.length ? (
+      {remoteError ? (
+        <div className="empty-state" role="alert">
+          <h3>No pudimos consultar la biblioteca</h3>
+          <p>{remoteError}</p>
+          <Button variant="outline" onClick={() => setQuery({ ...query })}>
+            Reintentar
+          </Button>
+        </div>
+      ) : loading ? (
+        <p role="status">Consultando catálogo…</p>
+      ) : filtered.length ? (
         <ResourceGrid items={filtered} />
       ) : (
         <div className="empty-state">
@@ -176,6 +245,25 @@ export function CatalogExplorer({
             Restablecer búsqueda
           </Button>
         </div>
+      )}
+      {remote && !remoteError && (
+        <nav className="pagination" aria-label="Páginas del catálogo">
+          <Button
+            variant="outline"
+            disabled={page === 1 || loading}
+            onClick={() => setPage(page - 1)}
+          >
+            Anterior
+          </Button>
+          <span>Página {page}</span>
+          <Button
+            variant="outline"
+            disabled={page * 50 >= remoteTotal || loading}
+            onClick={() => setPage(page + 1)}
+          >
+            Siguiente
+          </Button>
+        </nav>
       )}
     </section>
   );

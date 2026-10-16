@@ -39,7 +39,9 @@
     ".next-mvp/types/**/*.ts",
     ".next-mvp/dev/types/**/*.ts",
     "**/*.mts",
-    ".next-production/dev/types/**/*.ts"
+    ".next-production/dev/types/**/*.ts",
+    ".next-admin/types/**/*.ts",
+    ".next-admin/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

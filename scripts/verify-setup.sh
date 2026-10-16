@@ -32,4 +32,4 @@ bash scripts/pnpm.sh lint
 bash scripts/pnpm.sh build
 bash scripts/pnpm.sh smoke
 git diff --check
-echo 'Verificación del MVP completada: skills, dataset, búsqueda, tipos, lint, build y rutas de producción. Sin validación PostgreSQL ni servicios remotos.'
+echo 'Verificación frontend/backend completada: skills, dataset, búsqueda, tipos, lint, build y rutas de producción. PostgreSQL se verifica con scripts/test-postgres.sh; Auth/Storage remotos requieren proyecto conectado.'

@@ -1,33 +1,37 @@
-# Arquitectura del MVP
+# Arquitectura de HOTTO
 
-Una aplicación Next.js 16.4 App Router, React 19.3 y TypeScript estricto. Servidor
-por defecto; búsqueda, filtros, controles Base UI y menú forman los límites
-cliente. Supabase y PDF.js están instalados desde el bootstrap pero no se importan
-en el catálogo ni se simula una conexión. No se necesitan credenciales para el MVP.
+Next.js 16.4 App Router, React 19.3, TypeScript estricto y shadcn/Base UI.
+Server Components por defecto. Panel privado y catálogo comparten el dominio.
 
-| Capa | Implementación |
-| --- | --- |
-| Rutas | Inicio, biblioteca, materias, libros, jurisprudencia y recursos complementarios |
-| Dataset | `src/lib/library/{subjects,data,types}.ts`, versionado y con procedencia explícita |
-| Repositorio | `repository.ts`, lectura local de recursos publicados, relaciones N:M y archivos con licencia |
-| Búsqueda | `query.ts`, normalización de acentos/case, términos AND, título/autor/palabras clave |
-| Estado | Filtros instantáneos y URL mediante History API de Next; formulario GET para SSR y recarga |
-| UI | Tokens Tailwind, componentes shadcn Base UI y CSS institucional |
-| Documentos | Dos PDF originales de una página; enlaces reales de apertura y descarga, sin visor falso |
-| Base futura | Migración normalizada y RLS preparada, sin ejecución PostgreSQL |
+| Capa           | Implementación                                                                      |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Biblioteca     | Rutas de materias, libros, jurisprudencia y complementos existentes                 |
+| Datos          | Adaptador server-only `library/backend.ts`, SDK tipado, RPC search_catalog          |
+| Demostración   | Dataset versionado conservado y `/biblioteca/demo`, fuera del catálogo real         |
+| Búsqueda       | AND de términos sin acentos, título/autor/keywords, materia/tipo/PDF, páginas de 50 |
+| Autenticación  | Supabase Auth real, cookies HTTPOnly y Proxy de renovación                          |
+| Autorización   | Verificación independiente servidor + membresía/sesión vigentes por RLS             |
+| Administración | Formularios privados y endpoints con campos permitidos, límites y mismo origen      |
+| Documentos     | Bucket privado, validación PDF, gateways de streaming y visor nativo                |
+| Base           | Migraciones normalizadas, semilla 34 materias, revisión/permisos y auditoría        |
+| Pruebas        | Node, producción HTTP, navegador y PostgreSQL real aislado; CI separado SQL         |
 
-Los slugs son estables y las páginas inválidas devuelven 404. Los recursos
-legislativos, programas y complementos tienen `/biblioteca/recursos/[slug]` para
-que todas las tarjetas tengan una ficha propia. Los libros y casos tienen sus
-secciones específicas. Cada materia organiza cinco categorías; 32 materias sin
-recursos muestran un estado vacío con acceso a los pilotos.
+El catálogo selecciona Supabase al configurar coordenadas del proyecto. Conexión
+parcial/fallida muestra error explícito; sin configuración se conserva modo demo.
+El panel nunca utiliza persistencia local ni login fingido. Lectura pública usa
+cliente anon sin cookies para evitar exposición de borradores a visitantes.
+Cada ruta de archivos revalida permisos y mantiene la firma temporal en servidor.
 
-Título y descripción por página, lang `es-AR`, viewport y color de tema.
-Se conserva `noindex, nofollow` porque esta entrega contiene autores y fallos
-ficticios. No se inventan dominio canónico, ISBN, citas judiciales ni permisos.
-Al publicar contenido real: revisar robots, canonical, sitemap y Open Graph con
-el dominio confirmado. No hay deployment ni panel editorial en esta entrega.
+Slugs y sección de obra permanecen estables. Los tipos específicos conservan
+`/biblioteca/libros/[slug]`, `/biblioteca/jurisprudencia/[slug]` y
+`/biblioteca/recursos/[slug]`. Nuevos slugs reales no requieren modificar código.
+Materias sin contenido y fallas de conexión tienen estados explícitos.
 
-`HOTTO_BUILD_DIR` separa caches: desarrollo `.next-mvp`, producción
-`.next-production`. El build no borra una cache de un servidor vivo. No activar
-Cache Components o servicios nuevos sin una necesidad concreta.
+SEO inicial con título/descripción, lang es-AR y noindex conservado hasta confirmar
+contenido/dominio/despliegue. No se inventan ISBN, citas ni permisos. PDF.js
+avanzado y SEO de producción siguen pendientes. No hay deployment remoto.
+
+Caches separadas: `.next-admin` para desarrollo y `.next-production` para build.
+No borrar caches de servidores vivos. Ninguna capa usa service-role; la operación
+admin emplea JWT verificado del usuario y RLS. Documentación detallada y conexión
+pendiente: BACKEND_ADMIN.md y VALIDACION_BACKEND.md.

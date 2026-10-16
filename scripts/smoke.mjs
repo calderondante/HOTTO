@@ -33,6 +33,7 @@ const server = spawn(
       ...process.env,
       HOTTO_BUILD_DIR: ".next-production",
       NEXT_TELEMETRY_DISABLED: "1",
+      HOTTO_DATA_SOURCE: "demo",
     },
   },
 );
@@ -122,6 +123,70 @@ try {
   const styles = await css.text();
   assert.match(styles, /--brand-violet/);
   assert.match(styles, /prefers-reduced-motion/);
+  const demo = await read("/biblioteca/demo");
+  assert.equal((demo.match(/class="resource-card"/g) || []).length, 13);
+  const invalidFile = await fetch(`${base}/api/library/files/not-a-uuid`);
+  assert.equal(invalidFile.status, 404);
+  const foreign = await fetch(`${base}/api/admin/work`, {
+    method: "POST",
+    headers: {
+      Origin: "https://foreign.example",
+      "Content-Type": "application/json",
+    },
+    body: "{}",
+  });
+  assert.equal(
+    foreign.status,
+    403,
+    "Cross-origin mutations must be rejected before authentication",
+  );
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY &&
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    for (const path of [
+      "/admin",
+      "/admin/login",
+      "/admin/obras/nueva",
+      "/admin/catalogo",
+    ]) {
+      const html = await read(path);
+      assert.match(html, /Supabase/);
+      assert.doesNotMatch(html, /type="password"|action="\/api\/admin/);
+    }
+    for (const path of [
+      "/api/auth/login",
+      "/api/admin/work",
+      "/api/admin/upload",
+    ]) {
+      const denied = await fetch(`${base}${path}`, {
+        method: "POST",
+        headers: {
+          Origin: base,
+          "Content-Type": "application/json",
+          Cookie: "sb-access-token=forged-admin-session",
+        },
+        body: '{"email":"admin@example.com","password":"test-only"}',
+      });
+      assert.equal(
+        denied.status,
+        503,
+        `${path} must not simulate configured persistence or accept forged cookies`,
+      );
+      assert.match(denied.headers.get("cache-control"), /no-store/);
+    }
+    for (const path of [
+      "/api/admin/options",
+      "/api/admin/files/00000000-0000-4000-8000-000000000001",
+      "/api/library/files/00000000-0000-4000-8000-000000000001",
+    ]) {
+      assert.equal((await fetch(`${base}${path}`)).status, 503, path);
+    }
+    console.log(
+      "Admin HTTP: 4 private screens report missing connection; login, mutation, upload and previews stay closed; forged cookie and cross-origin requests rejected.",
+    );
+  }
   console.log(
     `Smoke producción: ${paths.length} páginas, 34 materias, 13 fichas, filtros SSR, búsquedas vacías, 5 rutas 404, 2 PDF reales, SEO y CSS verificados.`,
   );

@@ -3,7 +3,7 @@ name: Verify HOTTO
 on:
   pull_request:
   push:
-    branches: [main, setup/hotto-bootstrap, feature/hotto-biblioteca-mvp]
+    branches: [main, setup/hotto-bootstrap, feature/hotto-biblioteca-mvp, feature/hotto-backend-admin]
   workflow_dispatch:
 
 permissions:
@@ -38,3 +38,31 @@ jobs:
           NODE
           fi
           exit "$verify_status"
+
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17.11-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+        env:
+          POSTGRES_PASSWORD: hotto_ci_test_only
+          POSTGRES_DB: hotto_test_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .node-version
+      - uses: pnpm/action-setup@a8198c4bff370c8506180b035930dea56dbd5288 # v5
+      - run: bash scripts/pnpm.sh install --frozen-lockfile
+      - name: Real PostgreSQL migrations, schema contracts, RLS and publication
+        env:
+          HOTTO_TEST_DATABASE_URL: postgresql://postgres:hotto_ci_test_only@127.0.0.1:5432/hotto_test_ci
+        run: bash scripts/test-postgres.sh

@@ -12,3 +12,6 @@ export NEXT_TELEMETRY_DISABLED=1
 export SUPABASE_TELEMETRY_DISABLED=1
 export DISABLE_TELEMETRY=1
 export DO_NOT_TRACK=1
+
+# Node 24 SDK fetch follows the inherited session proxy.
+export NODE_USE_ENV_PROXY=1

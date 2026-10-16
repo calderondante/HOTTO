@@ -1,79 +1,56 @@
-# Modelo de biblioteca y Supabase
+# Modelo documental y Supabase
 
-El frontend lee exclusivamente el dataset versionado. Los contratos TypeScript
-están en `src/lib/library/types.ts`; no son tipos generados por una base remota.
-La migración inicial es `20261013215529_library_foundation.sql`, creada mediante
-la CLI de Supabase y escrita para PostgreSQL/Supabase. **No fue aplicada contra
-PostgreSQL local ni remoto.** No se arrancó Docker ni se descargaron imágenes.
+Cuatro migraciones ordenadas: foundation del MVP, evolución administrativa,
+semilla académica y búsqueda pública. Aplicadas desde cero y probadas contra
+PostgreSQL 17.11 nativo. **No se han aplicado a un proyecto Supabase remoto**;
+los límites de esa validación están en VALIDACION_BACKEND.md.
 
-| Tabla | Responsabilidad |
-| --- | --- |
-| academic_units | Institución, carrera y plan |
-| subjects | Nombre, código, slug, año curricular, alias y fuente |
-| authors | Autorías reales futuras o de demostración |
-| works | Obra/ficha, tipo, título, descripción, palabras clave y estado editorial |
-| work_subjects / work_authors | Relaciones N:M; un libro puede pertenecer a varias materias |
-| editions | Edición, año, editorial e ISBN opcional |
-| files | Edición, archivo privado, tamaño, MIME, SHA-256 y permiso |
-| jurisprudence | Tribunal, expediente, fecha, tema y síntesis de una obra |
-| sources | URLs, procedencia, nivel de verificación y nota |
-| licenses | Etiqueta, atribución, distribución y evidencia del permiso |
+| Tabla                       | Responsabilidad                                                   |
+| --------------------------- | ----------------------------------------------------------------- |
+| academic_units / subjects   | Carrera, plan y 34 materias con códigos y slugs estables          |
+| authors / work_authors      | Autores y relación N:M con obras                                  |
+| works / work_subjects       | Obra intelectual, estado editorial y clasificación N:M            |
+| editions                    | Ediciones bibliográficas independientes del binario               |
+| documents                   | PDF, enlace HTTPS o referencia; obra y edición opcional           |
+| files                       | Un binario por documento, bucket privado, SHA-256, bytes, páginas |
+| jurisprudence / legislation | Metadatos judiciales y legislativos                               |
+| sources / licenses          | Procedencia, verificación, distribución, evidencia y vigencia     |
+| document_permissions        | Verificación por documento, evidencia, administrador y fechas     |
+| editorial_events            | Auditoría inmutable de cambios de estado de obra/documento        |
+| private.library_admins      | Administradores activos, aprovisionados por propietario SQL       |
 
-Los estados editoriales son draft, review, published y archived. Publicado no
-significa oficial: la fuente distingue official, secondary-crosschecked y
-original-demo. Área editorial de materias no representa un departamento oficial.
-Los IDs TypeScript del fixture son locales; la base usa UUID. El adaptador futuro
-resolverá relaciones por código/slug y devolverá estos contratos. No hay seed SQL
-que atribuya autorización a archivos futuros ni una conexión que finja sincronía.
+15 tablas públicas con RLS más la tabla privada administrativa. FK, UNIQUE,
+CHECK, índices de relaciones, índices parciales de catálogo y GIN de keywords.
+Políticas públicas comprueban publicación y elegibilidad del documento. Todos
+los writes exigen membresía y sesión Auth vigentes; permisos y auditoría son
+privados. Las políticas antiguas basadas en app_metadata se reemplazan.
 
-## Seguridad preparada
+La semilla solo incorpora unidad, procedencia, 34 materias y marcadores pendientes
+de fuente/licencia. No crea obras ni autorizaciones ficticias. Nombres/códigos
+conservan el cotejo secundario y pendiente primario de DATOS_Y_FUENTES.md.
 
-RLS está habilitada en las once tablas. GRANT es explícito; anon no escribe.
-Lectura pública de obras/ediciones/jurisprudencia exige estado published. Tablas
-N:M comprueban la publicación de la obra; materias comprueban la unidad.
-Autorías públicas deben pertenecer a una obra publicada. Índices cubren FKs y
-relaciones, catálogo publicado e índices GIN de palabras clave.
-
-Escritura authenticated exige `auth.uid()` y el claim `app_metadata.library_role`
-editor/admin. No se confía en `user_metadata`. Ese claim solo podrá asignarse
-mediante un servidor autorizado; requiere renovación del JWT al cambiar roles.
-La evidencia de licencias no se otorga como columna SELECT a anon/authenticated;
-la consulta administrativa de esa evidencia requiere backend privilegiado con
-sesión/rol comprobados. Las escrituras editoriales pueden registrar evidencia.
-
-Los archivos requieren distribución permitida con evidencia no vacía mediante
-CHECK y FK compuesta. Sus rutas no tienen políticas públicas de lectura.
-Storage no se crea ni se vuelve público. Antes de integrar descargas reales:
-crear bucket privado, gateway autorizado que compruebe edición/obra publicada,
-licencia, vigencia y origen, y URL firmada breve; no enviar service keys al cliente.
-Los PDF del fixture en public son exclusivamente originales de demostración.
-
-## Validación y siguiente fase
-
-El SQL se analizó con pglast 7.10: 46 sentencias con sintaxis válida. Eso no valida
-semántica, tipos de Auth, GRANT, funciones, RLS, Storage ni comportamiento de
-PostgreSQL. Las sentencias DO y funciones necesitan además pruebas de ejecución.
-No presentar este análisis como una migración probada.
-
-En una base autorizada de pruebas: aplicar la migración, comprobar FKs, rechazo de
-archivos sin permiso, lectura anon de publicados y denegación de drafts, ausencia
-de writes anon, authenticated sin claim denegado, editor permitido, reclamo de
-user_metadata sin efecto y evidencia privada. Añadir pruebas SQL reproducibles y
-generar tipos antes de integrar Supabase. Crear entorno remoto queda para la fase
-siguiente; este MVP funciona sin él.
+Los contratos de aplicación en `database.types.ts` se verifican contra columnas
+SQL por `scripts/check-schema-contract.mjs`; **no se presentan como tipos generados
+por Supabase remoto**. El adaptador mapea UUIDs a códigos estables del frontend.
 
 ```mermaid
 erDiagram
   academic_units ||--o{ subjects : contiene
-  sources ||--o{ subjects : documenta
-  sources ||--o{ works : identifica
   works ||--o{ work_subjects : clasifica
   subjects ||--o{ work_subjects : agrupa
   works ||--o{ work_authors : acredita
   authors ||--o{ work_authors : escribe
   works ||--o{ editions : edita
-  editions ||--o{ files : adjunta
-  licenses ||--o{ files : autoriza
-  licenses ||--o{ works : referencia
+  works ||--o{ documents : dispone
+  editions o|--o{ documents : identifica
+  documents ||--o| files : almacena
+  documents ||--o| document_permissions : autoriza
+  licenses ||--o{ document_permissions : fundamenta
+  sources ||--o{ works : documenta
   works ||--o| jurisprudence : detalla
+  works ||--o| legislation : detalla
 ```
+
+Proceso editorial, seguridad de Storage, aprovisionamiento de administradores,
+configuración y limitaciones: BACKEND_ADMIN.md. Las pruebas utilizan fixtures de
+plataforma solo en una base desechable; nunca aplicarlos a Supabase real.

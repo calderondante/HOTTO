@@ -15,7 +15,8 @@
     "supabase": "bash scripts/supabase.sh",
     "ui": "shadcn",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "test:browser": "node scripts/browser-mvp.mjs"
+    "test:browser": "node scripts/browser-mvp.mjs",
+    "test:postgres": "bash scripts/test-postgres.sh"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
@@ -25,6 +26,7 @@
     "cn": "0.4.0",
     "lucide-react": "1.55.0",
     "next": "16.4.0",
+    "pdf-lib": "1.17.1",
     "pdfjs-dist": "6.4.299",
     "react": "19.3.0",
     "react-dom": "19.3.0",

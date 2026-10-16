@@ -1,9 +1,12 @@
 # HOTTO
 
-Comunidad jurídica y biblioteca digital. Primer MVP: 34 materias de Abogacía,
-dos pilotos, búsqueda, filtros, fichas relacionadas y navegación responsive.
-Los 13 recursos son demostraciones identificadas, con dos PDF originales de
-prueba. No requiere cuenta ni credenciales Supabase.
+Comunidad jurídica y biblioteca digital: 34 materias, búsqueda, filtros y fichas.
+Backend documental y panel privado en `/admin`, con Supabase Auth, RLS, ediciones,
+PDF privado, fuentes, permisos y revisión/publicación. Requiere conectar un
+proyecto Supabase para administrar; no ofrece autenticación simulada.
+
+Sin conexión funciona la demostración existente. `/biblioteca/demo` conserva los
+13 ejemplos y dos PDF originales fuera del catálogo definitivo.
 
 ## Reconstrucción
 
@@ -47,10 +50,16 @@ El cotejo institucional de Drive/UNLaM sigue pendiente por bloqueo de red.
 No se descargó ni distribuyó documentación de esa carpeta. No atribuir carácter
 oficial a los recursos de demostración: [fuentes](docs/DATOS_Y_FUENTES.md).
 
-El dataset local es la fuente real del frontend. La migración Supabase prepara
-el modelo y RLS, pero **no fue aplicada contra PostgreSQL**. No se arrancó el
-stack Docker pesado ni se conectó una base remota. `.env.example` tiene valores
-vacíos; claves privilegiadas nunca deben aparecer en NEXT_PUBLIC_* ni Git.
+El adaptador consulta Supabase cuando se configura el proyecto; conexión parcial
+o fallida produce un error explícito. Migraciones y RLS fueron ejecutadas en
+PostgreSQL 17.11 nativo de pruebas, con esquemas mínimos de plataforma. No hay
+Supabase remoto conectado ni pruebas integradas de Auth/Storage HTTP. No se
+arrancó el stack Docker pesado. `.env.example` conserva valores vacíos.
+
+Ver [administración y conexión](docs/BACKEND_ADMIN.md) y
+[validación del backend](docs/VALIDACION_BACKEND.md).
+`bash scripts/pnpm.sh test:postgres` requiere PostgreSQL nativo o la base efímera
+loopback documentada; CI dispone de un trabajo PostgreSQL separado.
 
 ## Documentación
 
