@@ -135,6 +135,7 @@ export default async function Catalog({
                         id: "secondary-crosschecked",
                         name: "Fuentes secundarias cotejadas",
                       },
+                      { id: "original-demo", name: "Contenido original de prueba" },
                     ]}
                   />
                   <SelectField

@@ -89,6 +89,7 @@ export async function POST(
         verification: choice(body.verification, [
           "official",
           "secondary-crosschecked",
+          "original-demo",
           "unverified",
         ] as const),
         editorial_status: choice(body.editorial_status, states),
