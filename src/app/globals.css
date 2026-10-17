@@ -1907,6 +1907,10 @@ h3 {
   }
 }
 /* Jurisprudence: compact filters and source-first result cards. */
+.case-preview-notice{border:1px solid #d7bd80;border-left:4px solid #b69155;background:#faf5e9;border-radius:12px;padding:1rem 1.15rem;margin-bottom:1.25rem;color:#31253b}
+.case-preview-notice strong{display:block;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+.case-preview-notice p{margin:.45rem 0 .65rem;line-height:1.55}
+.case-preview-notice a{color:#472257;font-weight:700;text-decoration:underline}
 .case-search{background:#fff;border:1px solid #e2dbe4;border-radius:18px;padding:1.25rem;box-shadow:0 8px 28px #19131f0a;margin-bottom:2rem}
 .case-search label{display:flex;flex-direction:column;gap:.45rem;font-weight:650;font-size:.88rem;color:#2d2333}
 .case-search input,.case-search select{width:100%;min-height:44px;border:1px solid #cec7d1;border-radius:9px;background:#fff;padding:.65rem .8rem;color:#231928;font:inherit}

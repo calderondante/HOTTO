@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowUpRight, Search, Scale } from "lucide-react";
 import { subjects } from "@/lib/library/data";
 import { parseCaseQuery, searchCases } from "@/lib/library/jurisprudence";
+import { searchMarburyExample } from "@/lib/library/jurisprudence-example";
 import { publicSiteOrigin } from "@/lib/library/jurisprudence-seo";
 import { Breadcrumbs, PageIntro } from "@/components/library/presentation";
 import { LibraryConnectionError } from "@/components/library/connection-error";
@@ -10,7 +11,7 @@ import Link from "next/link";
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const values = await searchParams;
-  const hasFilters = ["q", "materia", "tribunal", "anio", "jurisdiccion", "pagina"].some((k) => Boolean(values[k]));
+  const hasFilters = ["q", "materia", "tribunal", "anio", "jurisdiccion", "pagina", "ejemplo"].some((k) => Boolean(values[k]));
   const origin = publicSiteOrigin();
   return {
     title: "Jurisprudencia · Buscador de fallos",
@@ -20,11 +21,14 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 export default async function Jurisprudence({ searchParams }: Props) {
-  const query = parseCaseQuery(await searchParams);
+  const values = await searchParams;
+  const query = parseCaseQuery(values);
+  const preview = values.ejemplo === "marbury";
   let result: Awaited<ReturnType<typeof searchCases>> | null = null;
-  try { result = await searchCases(query); } catch { /* explicit connection state below */ }
+  try { result = preview ? searchMarburyExample(query) : await searchCases(query); } catch { /* explicit connection state below */ }
   const params = (page: number) => {
     const p = new URLSearchParams();
+    if (preview) p.set("ejemplo", "marbury");
     if (query.q) p.set("q", query.q);
     if (query.subject) p.set("materia", query.subject);
     if (query.court) p.set("tribunal", query.court);
@@ -39,7 +43,9 @@ export default async function Jurisprudence({ searchParams }: Props) {
       <p>Consultá fallos en sitios oficiales. Las fichas de HOTTO aparecen solo cuando existe contenido editorial propio para aportar contexto.</p>
     </PageIntro>
     <div className="shell page-content">
+      {preview && <div className="case-preview-notice" role="note"><strong>Vista de ejemplo · fuera del catálogo público</strong><p>Marbury v. Madison es un fallo histórico real. Esta ficha de muestra permite ver la búsqueda mientras HOTTO aún no tiene fallos publicados. El enlace lleva al facsímil de U.S. Reports alojado por la Biblioteca del Congreso de EE. UU.</p><Link href="/biblioteca/jurisprudencia">Volver a la búsqueda real</Link></div>}
       <form className="case-search" action="/biblioteca/jurisprudencia" method="get" role="search">
+        {preview && <input type="hidden" name="ejemplo" value="marbury" />}
         <div className="case-search-main">
           <label htmlFor="case-q">Buscar fallo</label>
           <input id="case-q" name="q" type="search" maxLength={160} defaultValue={query.q} placeholder="Carátula, tema, tribunal o expediente…" />
@@ -61,11 +67,11 @@ export default async function Jurisprudence({ searchParams }: Props) {
               <p className="eyebrow">{item.court}{item.chamber ? ` · ${item.chamber}` : ""}</p>
               <h3><a href={item.officialUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} · abrir sentencia en sitio oficial (otra pestaña)`}>{item.title} <ArrowUpRight size={17} aria-hidden="true" /></a></h3>
               <p>{item.topic} · {new Intl.DateTimeFormat("es-AR", { dateStyle: "long", timeZone: "UTC" }).format(new Date(item.date))}</p>
-              <p className="case-docket">Expediente: {item.docket} · {item.jurisdiction}</p>
-              <div className="case-result-links"><a href={item.officialUrl} target="_blank" rel="noopener noreferrer">Consultar sentencia oficial <ArrowUpRight size={15} aria-hidden="true" /></a>{item.seoLevel !== "A" && <Link href={`/biblioteca/jurisprudencia/${item.slug}`}>Ver análisis en HOTTO</Link>}</div>
+              <p className="case-docket">{item.docket && `Expediente: ${item.docket} · `}{item.judicialId && `Cita: ${item.judicialId} · `}{item.jurisdiction}</p>
+              <div className="case-result-links"><a href={item.officialUrl} target="_blank" rel="noopener noreferrer">{preview ? "Ver facsímil en Biblioteca del Congreso" : "Consultar sentencia oficial"} <ArrowUpRight size={15} aria-hidden="true" /></a>{item.seoLevel !== "A" && <Link href={`/biblioteca/jurisprudencia/${item.slug}`}>Ver análisis en HOTTO</Link>}</div>
             </div>
           </article>)}
-        </div> : <div className="empty-state"><Search size={30} aria-hidden="true" /><h3>Todavía no hay fallos para esta búsqueda</h3><p>Probá otros filtros. Los ejemplos ficticios están separados en la sección de demostración.</p><Link className="text-link" href="/biblioteca/demo">Ver demostraciones</Link></div>}
+        </div> : <div className="empty-state"><Search size={30} aria-hidden="true" /><h3>Todavía no hay fallos para esta búsqueda</h3><p>Probá otros filtros. El ejemplo histórico y los casos ficticios se muestran separados del catálogo.</p><div className="button-row"><Link className="text-link" href="/biblioteca/jurisprudencia?ejemplo=marbury">Ver ejemplo: Marbury v. Madison</Link><Link className="text-link" href="/biblioteca/demo">Ver demostraciones</Link></div></div>}
         {result.total > 30 && <nav className="pagination" aria-label="Páginas de jurisprudencia">{query.page > 1 && <Link href={params(query.page - 1)}>Anterior</Link>}<span>Página {query.page}</span>{query.page * 30 < result.total && <Link href={params(query.page + 1)}>Siguiente</Link>}</nav>}
       </> : <LibraryConnectionError />}
     </div>

@@ -38,13 +38,13 @@ materias, jurisprudencia y login; `/admin` redirigió al login y
 biblioteca: cero violaciones; la biblioteca tuvo una comprobación incompleta.
 
 La sesión Auth real y la primera carga/publicación/lectura/despublicación
-remotas **siguen pendientes**: este entorno no dispone de la contraseña de la
-cuenta administrativa como secreto. Tampoco hay otra cuenta Auth legítima no
+remotas **siguen pendientes**. El secreto `HOTTO_TEST_ADMIN_PASSWORD` ya está
+disponible, pero Supabase Auth devolvió `invalid_credentials` al intentar
+ingresar con esa cuenta, tanto desde HOTTO como mediante el cliente Auth. No se
+inició sesión ni se modificaron obras. Tampoco hay otra cuenta Auth legítima no
 administradora para la prueba HTTP de ese rol. Los fixtures SQL ejercitan sus
-reglas de RLS, pero no sustituyen esas pruebas. Para completarlas sin revelar la
-contraseña en el chat, la persona titular debe agregar temporalmente
-`HOTTO_TEST_ADMIN_PASSWORD` como secreto del entorno Codex Cloud y reiniciar el
-entorno para que quede disponible; después se puede iniciar sesión mediante
-`/admin/login` y ejecutar el circuito con uno de los PDF originales del propio
-repositorio. Retirar ese secreto después. No se insertaron obras de prueba ni
-se simuló una sesión en el proyecto remoto.
+reglas de RLS, pero no sustituyen esas pruebas. El titular debe comprobar el
+valor actual del secreto en la configuración segura de Codex Cloud y reiniciar
+el entorno después de corregirlo; no debe enviarlo por chat. Cuando Auth acepte
+la contraseña se podrá ejecutar el circuito con uno de los PDF originales del
+repositorio. Retirar ese secreto después.
