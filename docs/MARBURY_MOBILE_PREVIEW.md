@@ -21,3 +21,10 @@ sin pulsar controles. Dura 10,7 segundos; el archivo es H.264 MP4 de 780 ×
 muestra el resultado. Se probaron búsqueda y filtros del ejemplo, TypeScript,
 ESLint, build, carga de la ruta de producción, `noindex`, reproducción íntegra
 del video y accesibilidad automática móvil sin violaciones.
+
+La [segunda grabación con pulsaciones](../design/previews/jurisprudencia-marbury-movil-con-toques.mp4)
+reproduce el flujo desde la biblioteca: abrir el menú móvil, entrar en
+Jurisprudencia, elegir el ejemplo histórico, escribir «Marbury» y pulsar
+«Buscar». Combina toques reales emulados y desplazamientos táctiles en el
+navegador, con un indicador visual discreto para cada toque. Dura 18 segundos
+y conserva la vista final del resultado; se comprobó su decodificación íntegra.
