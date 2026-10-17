@@ -112,7 +112,9 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
       <Link
         href={item.href}
         className="resource-main"
-        aria-label={`Ver ficha: ${item.title}`}
+        aria-label={item.external ? `Abrir sentencia oficial (otra pestaña): ${item.title}` : `Ver ficha: ${item.title}`}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
       >
         {item.kind === "book" ? (
           <div className={`cover-stage stage-${item.cover}`}>
@@ -151,6 +153,8 @@ export function ResourceCard({ item }: { item: CatalogItem }) {
               <Download size={12} aria-hidden="true" />{" "}
               {item.demo ? "PDF de muestra" : "PDF disponible"}
             </>
+          ) : item.kind === "jurisprudence" && !item.demo ? (
+            "Sentencia en fuente oficial"
           ) : item.kind === "book" ? (
             "Referencia sin archivo"
           ) : (

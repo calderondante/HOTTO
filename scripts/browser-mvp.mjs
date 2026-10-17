@@ -255,6 +255,14 @@ try {
     result: "pass",
   });
   console.log("Browser: all 47 resource and subject card navigations passed.");
+  await go("/biblioteca/jurisprudencia");
+  await click('a[href="/biblioteca/jurisprudencia/ejemplo-arriola"]');
+  await wait('location.pathname==="/biblioteca/jurisprudencia/ejemplo-arriola" && document.querySelector("main h1")?.textContent.includes("Arriola")');
+  const arriolaPdf = await evaluate('document.querySelector("a.case-official-link")?.href');
+  assert.equal(new URL(arriolaPdf).hostname, "www.cij.gov.ar");
+  assert.match(arriolaPdf, /\.pdf$/);
+  assert.match(await evaluate('document.querySelector("meta[name=robots]")?.content'), /noindex/);
+  report.push({ test: "Arriola preview fiche opens from jurisprudence with official court PDF and noindex", result: "pass" });
   await go("/biblioteca/materias");
   await fill("#subject-search", "civil y comercial");
   await wait('document.querySelectorAll(".subject-card").length===5');
