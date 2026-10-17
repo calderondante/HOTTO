@@ -1,6 +1,12 @@
 \set ON_ERROR_STOP on
 begin;
 create function pg_temp.assert_true(condition boolean,message text) returns void language plpgsql as $$begin if condition is distinct from true then raise exception 'FAIL: %',message;end if;end;$$;
+select pg_temp.assert_true((select count(*)=1 from pg_indexes where schemaname='public' and tablename='jurisprudence' and indexname='jurisprudence_approved_by_idx'),'approved_by foreign key has an index');
+select pg_temp.assert_true(not exists (
+ select 1 from pg_policies p cross join lateral unnest(p.roles) r(role)
+ where p.schemaname='public' and p.cmd in ('SELECT','ALL') and r.role in ('anon','authenticated')
+ group by p.tablename,r.role having count(*)>1
+),'one effective public SELECT policy per role and table');
 insert into auth.users values('10000000-0000-4000-8000-000000000001'),('10000000-0000-4000-8000-000000000002');
 insert into auth.sessions(id,user_id) values('10000000-0000-4000-9000-000000000001','10000000-0000-4000-8000-000000000001'),('10000000-0000-4000-9000-000000000002','10000000-0000-4000-8000-000000000002');
 insert into private.library_admins(user_id) values('10000000-0000-4000-8000-000000000001');
@@ -49,6 +55,12 @@ select pg_temp.assert_true((public.search_catalog('AUTOR PRUEBA','2340','book',f
 select pg_temp.assert_true((public.search_catalog('zzzinexistente','','all',false,1)->>'total')::integer=0,'empty search');
 select pg_temp.assert_true((select count(*)=2 from public.work_subjects),'one work shared by two subjects');
 do $$begin begin perform evidence from public.document_permissions;raise exception 'Evidence exposed';exception when insufficient_privilege then null;end;end;$$;
+reset role;
+select set_config('request.jwt.claims','{"sub":"10000000-0000-4000-8000-000000000002","session_id":"10000000-0000-4000-9000-000000000002","role":"authenticated","app_metadata":{"library_role":"admin"}}',true);
+set local role authenticated;
+select pg_temp.assert_true((select count(*)=1 from public.works),'ordinary authenticated users retain published reads');
+select pg_temp.assert_true((select count(*)=0 from public.licenses),'ordinary authenticated users cannot read private licenses');
+select pg_temp.assert_true((select count(*)=0 from public.document_permissions),'ordinary authenticated users cannot read permission evidence');
 reset role;
 select set_config('request.jwt.claims','{"sub":"10000000-0000-4000-8000-000000000001","session_id":"10000000-0000-4000-9000-000000000001","role":"authenticated"}',true);
 set local role authenticated;
