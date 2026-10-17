@@ -43,6 +43,11 @@ export default async function Jurisprudence({ searchParams }: Props) {
       <p>Consultá fallos en sitios oficiales. Las fichas de HOTTO aparecen solo cuando existe contenido editorial propio para aportar contexto.</p>
     </PageIntro>
     <div className="shell page-content">
+      {!preview && <aside className="case-preview-notice" aria-label="Ficha de ejemplo">
+        <strong>Fallo argentino · vista de ejemplo</strong>
+        <p>Conocé la ficha de «Arriola» y abrí la sentencia completa en el PDF alojado por la Corte Suprema. Esta vista todavía está fuera del catálogo administrado.</p>
+        <Link href="/biblioteca/jurisprudencia/ejemplo-arriola">Ver ficha del fallo Arriola</Link>
+      </aside>}
       {preview && <div className="case-preview-notice" role="note"><strong>Vista de ejemplo · fuera del catálogo público</strong><p>Marbury v. Madison es un fallo histórico real. Esta ficha de muestra permite ver la búsqueda mientras HOTTO aún no tiene fallos publicados. El enlace lleva al facsímil de U.S. Reports alojado por la Biblioteca del Congreso de EE. UU.</p><Link href="/biblioteca/jurisprudencia">Volver a la búsqueda real</Link></div>}
       <form className="case-search" action="/biblioteca/jurisprudencia" method="get" role="search">
         {preview && <input type="hidden" name="ejemplo" value="marbury" />}
@@ -71,7 +76,7 @@ export default async function Jurisprudence({ searchParams }: Props) {
               <div className="case-result-links"><a href={item.officialUrl} target="_blank" rel="noopener noreferrer">{preview ? "Ver facsímil en Biblioteca del Congreso" : "Consultar sentencia oficial"} <ArrowUpRight size={15} aria-hidden="true" /></a>{item.seoLevel !== "A" && <Link href={`/biblioteca/jurisprudencia/${item.slug}`}>Ver análisis en HOTTO</Link>}</div>
             </div>
           </article>)}
-        </div> : <div className="empty-state"><Search size={30} aria-hidden="true" /><h3>Todavía no hay fallos para esta búsqueda</h3><p>Probá otros filtros. El ejemplo histórico y los casos ficticios se muestran separados del catálogo.</p><div className="button-row"><Link className="text-link" href="/biblioteca/jurisprudencia?ejemplo=marbury">Ver ejemplo: Marbury v. Madison</Link><Link className="text-link" href="/biblioteca/demo">Ver demostraciones</Link></div></div>}
+        </div> : <div className="empty-state"><Search size={30} aria-hidden="true" /><h3>Todavía no hay fallos para esta búsqueda</h3><p>Probá otros filtros. La ficha de ejemplo y los casos ficticios se muestran separados del catálogo.</p><div className="button-row"><Link className="text-link" href="/biblioteca/jurisprudencia/ejemplo-arriola">Ver ficha: Arriola</Link><Link className="text-link" href="/biblioteca/demo">Ver demostraciones</Link></div></div>}
         {result.total > 30 && <nav className="pagination" aria-label="Páginas de jurisprudencia">{query.page > 1 && <Link href={params(query.page - 1)}>Anterior</Link>}<span>Página {query.page}</span>{query.page * 30 < result.total && <Link href={params(query.page + 1)}>Siguiente</Link>}</nav>}
       </> : <LibraryConnectionError />}
     </div>

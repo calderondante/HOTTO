@@ -5,8 +5,10 @@ resultado histórico para probar la búsqueda móvil cuando la base todavía no
 tiene fallos publicados. Se identifica como **vista de ejemplo**, queda fuera
 del RPC, del catálogo administrado y del índice de buscadores. El formulario
 mantiene el modo de ejemplo al buscar o filtrar; el enlace «Volver a la búsqueda
-real» lo abandona. Desde el estado vacío de jurisprudencia se puede entrar a
-esta vista. El ejemplo no crea registros en Supabase.
+real» lo abandona. Esta ruta histórica sigue disponible por URL directa. La
+entrada visible desde jurisprudencia ahora lleva a la
+[ficha argentina de Arriola](ARRIOLA_MOBILE_PREVIEW.md). El ejemplo no crea
+registros en Supabase.
 
 La referencia es *Marbury v. Madison*, 5 U.S. (1 Cranch) 137 (1803), Corte
 Suprema de los Estados Unidos. La tarjeta enlaza al
