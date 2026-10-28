@@ -1,6 +1,6 @@
 import { supabaseConfig } from "@/lib/supabase/config";
 import { ConnectionNeeded } from "@/components/admin/access";
-import { MagicLinkForm } from "@/components/admin/magic-link-form";
+import { OtpForm } from "@/components/admin/otp-form";
 import {
   Card,
   CardHeader,
@@ -23,12 +23,12 @@ export default async function Login({ searchParams }: { searchParams: Promise<Re
           <CardHeader>
             <CardTitle>Iniciar sesión</CardTitle>
             <CardDescription>
-              Recibí un enlace de un solo uso en tu correo autorizado. No necesitás contraseña.
+              Recibí un código de seis dígitos en tu correo autorizado. No necesitás contraseña ni abrir enlaces.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {status === "invalid" && <p role="alert">El enlace no es válido, venció o la cuenta no tiene acceso. Solicitá otro enlace y abrilo en el mismo navegador.</p>}
-            <MagicLinkForm />
+            {status === "invalid" && <p role="alert">El enlace anterior ya no es válido. Solicitá un código e ingresalo acá.</p>}
+            <OtpForm />
           </CardContent>
         </Card>
       ) : (

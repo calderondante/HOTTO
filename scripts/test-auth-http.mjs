@@ -26,4 +26,9 @@ for (const entity of ["work", "status", "permission", "document"]) {
 }
 r = await fetch(`${base}/api/admin/upload`, { method: "POST", headers: { Origin: base }, body: new FormData() });
 assert.equal(r.status, 401);
-console.log("PASS: unlisted Magic Link request, validation, CSRF, callback rejection/fixed redirects, anonymous admin reads/writes/upload. No email or document created.");
+console.log("PASS: unlisted OTP request, validation, CSRF, callback rejection/fixed redirects, anonymous admin reads/writes/upload. No email or document created.");
+
+r = await fetch(`${base}/api/auth/verify`, { method: "POST", headers: { Origin: base, "Content-Type": "application/json" }, body: JSON.stringify({ email: "not-authorized@example.invalid", token: "012345" }) });
+assert.equal(r.status, 401);
+assert.equal((await fetch(`${base}/api/admin/constitutional-inventory`)).status, 401);
+console.log("PASS: OTP verification and constitutional inventory remain protected without an admin session.");

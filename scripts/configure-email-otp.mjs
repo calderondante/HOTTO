@@ -1,0 +1,22 @@
+import { readFileSync } from "node:fs";
+const project = process.env.SUPABASE_PROJECT_ID;
+const token = process.env.SUPABASE_ACCESS_TOKEN;
+if (project !== "trkoraszozabtywkfvin" || !token) throw Error("Se requiere el proyecto HOTTO existente y acceso seguro a la API de gestión.");
+const endpoint = `https://api.supabase.com/v1/projects/${project}/config/auth`;
+const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+const patch = { mailer_otp_length: 6, mailer_otp_exp: 600, disable_signup: true, mailer_subjects_magic_link: "Tu código de acceso a HOTTO", mailer_templates_magic_link_content: readFileSync(new URL("../supabase/templates/email-otp.html", import.meta.url), "utf8") };
+const current = await fetch(endpoint, { headers });
+if (!current.ok) throw Error(`No se pudo consultar Auth: HTTP ${current.status}`);
+const config = await current.json();
+console.log(JSON.stringify({ otp_length: config.mailer_otp_length, signup_disabled: config.disable_signup, smtp_configured: Boolean(config.smtp_host), template_has_token: config.mailer_templates_magic_link_content?.includes(".Token"), apply_requested: process.argv.includes("--apply") }));
+if (process.argv.includes("--apply")) {
+  const site = "https://hotto-six.vercel.app";
+  const login = await fetch(`${site}/admin/login`);
+  const verify = await fetch(`${site}/api/auth/verify`, { redirect: "manual" });
+  if (!login.ok || !(await login.text()).includes("Recibí un código de seis dígitos") || verify.status !== 405) throw Error("Primero desplegar la interfaz OTP de este PR. No se modifica Auth mientras producción use solo Magic Link.");
+  const response = await fetch(endpoint, { method: "PATCH", headers, body: JSON.stringify(patch) });
+  if (!response.ok) throw Error(`No se pudo actualizar Auth: HTTP ${response.status}`);
+  const checked = await (await fetch(endpoint, { headers })).json();
+  if (checked.mailer_otp_length !== 6 || !checked.disable_signup || !checked.mailer_templates_magic_link_content?.includes(".Token")) throw Error("La verificación posterior de Auth no coincidió.");
+  console.log("Configuración OTP aplicada y cotejada. No se enviaron correos ni se crearon usuarios.");
+} else console.log("Solo consulta. Plantilla preparada; usar --apply después de desplegar la UI OTP. No se enviaron correos.");

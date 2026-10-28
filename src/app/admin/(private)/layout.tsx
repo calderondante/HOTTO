@@ -31,6 +31,7 @@ export default async function Layout({
       <nav className="admin-nav" aria-label="Administración">
         <Link href="/admin">Documentos</Link>
         <Link href="/admin/obras/nueva">Nuevo ingreso</Link>
+        <Link href="/admin/inventario">Inventario constitucional</Link>
         <Link href="/admin/catalogo">Autores, fuentes y licencias</Link>
         <Link href="/biblioteca">Ver biblioteca pública</Link>
       </nav>
