@@ -88,17 +88,17 @@ en el servidor. Bytes ya entregados no pueden retirarse del equipo del lector.
 ## Conexión activa y acceso administrativo
 
 El proyecto de desarrollo `trkoraszozabtywkfvin` (sa-east-1, PostgreSQL 17.11)
-tiene las seis migraciones aplicadas, 34 materias, el bucket privado y el único
+tiene las ocho migraciones aplicadas, 34 materias, el bucket privado y el único
 administrador inicial autorizado mediante `private.library_admins`. La cuenta
 Auth preexistente tiene correo confirmado. Las variables de conexión están en
 Codex Cloud; ninguna clave privada se incorpora al repositorio. El frontend
 usa la publishable key y datos persistentes cuando `HOTTO_DATA_SOURCE=supabase`.
 
-El ingreso completo con contraseña y el ciclo real de carga/publicación siguen
-pendientes hasta disponer de una sesión administrativa legítima. No se ha creado
-una identidad ni una contraseña de prueba. El catálogo real está vacío de obras;
-los ejemplos permanecen únicamente en `/biblioteca/demo`. Véase
-`docs/PHASE4_SUPABASE_LIVE.md` para verificaciones y límites exactos.
+El ingreso usa Magic Link para correos previamente habilitados, sin alta
+pública ni contraseña. El primer ingreso real por correo y el ciclo de
+carga/publicación siguen pendientes de una sesión legítima. Consultar
+[LANZAMIENTO.md](LANZAMIENTO.md) para variables, URLs, SMTP y prueba de aceptación.
+El catálogo real conserva cero obras; los ejemplos permanecen separados.
 
 Para otro despliegue, configurar por el mecanismo seguro del entorno
 `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` y

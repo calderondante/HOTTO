@@ -1,3 +1,4 @@
+import { sessionCookieOptions } from "@/lib/admin/magic-link";
 import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
@@ -12,11 +13,7 @@ export async function sessionClient() {
     global: {
       fetch: (url, options) => fetch(url, { ...options, cache: "no-store" }),
     },
-    cookieOptions: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: config.url.startsWith("https:"),
-    },
+    cookieOptions: sessionCookieOptions(),
     cookies: {
       getAll: () => store.getAll(),
       setAll: (entries) => {
