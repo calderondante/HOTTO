@@ -1,3 +1,4 @@
+import { SubjectCases } from "@/components/library/subject-cases";
 import { getCatalog } from "@/lib/library/repository";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -69,6 +70,7 @@ export default async function Subject({ params, searchParams }: Props) {
         </div>
       </PageIntro>
       <div className="shell page-content">
+        <SubjectCases code={subject.code} />
         <div className="category-summary" aria-label="Recursos por categoría">
           {resourceKinds.map((kind) => (
             <div key={kind}>
@@ -114,8 +116,8 @@ export default async function Subject({ params, searchParams }: Props) {
           </div>
         )}
         <p className="source-note">
-          Datos académicos de fuentes secundarias cotejadas. El programa oficial
-          de la materia no está disponible en esta entrega.
+          Organización bibliográfica por materia. Las agrupaciones temáticas no
+          reemplazan un programa académico ni acreditan bibliografía obligatoria.
         </p>
       </div>
     </main>

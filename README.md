@@ -71,3 +71,5 @@ La validación histórica del bootstrap está en docs/VALIDACION.md.
 No se ha desplegado un sitio ni creado una base remota.
 
 Despliegue y acceso administrativo por Magic Link: [guía de lanzamiento](docs/LANZAMIENTO.md).
+
+Etapa 6: [OTP e inventario constitucional](docs/ETAPA6_OTP_Y_JURISPRUDENCIA.md).

@@ -1924,3 +1924,7 @@ h3 {
 @media(max-width:480px){.case-detail-header{padding:2rem 0}.case-detail-header h1{font-size:clamp(2rem,9vw,2.8rem)}.case-official-link{width:100%;text-align:center}.case-facts{padding:1.2rem}}
 @media(max-width:800px){.case-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.case-filters button{grid-column:1/-1}.case-detail-body{grid-template-columns:1fr}.case-facts{max-width:none}}
 @media(max-width:480px){.case-filters{grid-template-columns:1fr}.case-result{grid-template-columns:1fr}.case-result-mark{display:none}.case-search{padding:1rem}}
+
+.subject-case-topics{margin:0 0 2rem;padding:1.25rem;border:1px solid #ded4df;border-radius:14px;background:#fff}.subject-case-topics h2{font-family:Georgia,serif;font-size:1.6rem}.subject-case-topics details{border-top:1px solid #e6dde2;padding:.8rem 0}.subject-case-topics summary{cursor:pointer;min-height:44px;font-weight:700;padding:.5rem 0}.subject-case-topics li{margin:.8rem 0;line-height:1.6}.subject-case-topics a{color:#472257;text-decoration:underline;overflow-wrap:anywhere}
+
+.inventory-result{grid-template-columns:1fr}.inventory-result details{margin-top:1rem}.inventory-result summary{min-height:44px;cursor:pointer}.inventory-result a{overflow-wrap:anywhere}

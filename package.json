@@ -17,7 +17,9 @@
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:browser": "node scripts/browser-mvp.mjs",
     "test:postgres": "bash scripts/test-postgres.sh",
-    "test:auth-http": "node scripts/test-auth-http.mjs"
+    "test:auth-http": "node scripts/test-auth-http.mjs",
+    "auth:configure-otp": "node scripts/configure-email-otp.mjs",
+    "inventory:prepare": "node scripts/prepare-constitutional-import.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",

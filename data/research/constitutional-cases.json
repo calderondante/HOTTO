@@ -1,0 +1,1245 @@
+{
+  "version": 1,
+  "scope": "generic-subjects",
+  "programs_found": 0,
+  "published_records": 0,
+  "note": "Inventario de materiales compartidos; no acredita pertenencia a un programa vigente. Sin comisiones ni docentes. No es un catálogo publicado.",
+  "cases": [
+    {
+      "id": "arriola",
+      "name_as_listed": "Arriola",
+      "title": "Arriola, Sebastián y otros s/ causa n° 9080",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2009-08-25",
+      "docket": "A. 891. XLIV.",
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Privacidad y autonomía personal"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1Nld8C5GrZsCyftRnWDgBnJIVoAev4pCO/view",
+          "label": "Arriola,-Sebastian-y-otros-s_-RECURSO-DE-HECHO-causa-n---9080.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.cij.gov.ar/archivo-cij/adj/pdfs/ADJ-0.331433001251232084.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "direct-pdf-text",
+        "sha256": "e5f675cc326014f01d2f5277574cc8dc85c1d29e19eb0ad577cab7e8bcb0fb54",
+        "evidence": "Carátula, fecha y expediente cotejados con el texto de la sentencia."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "La sentencia Arriola comienza en la página 5 del PDF; las primeras cuatro contienen un dictamen de la Procuración en Villacampa."
+    },
+    {
+      "id": "colavini",
+      "name_as_listed": "Colavini",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1qtYJMiCP84a-oWCzzNORYvfFL9JhOL6R/view",
+          "label": "Colavini.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "ercolano",
+      "name_as_listed": "Ercolano",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1IsOT2rVqN29gIH99KCVElddkzrb988eI/view",
+          "label": "Ercolano---320162.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "ekmekdjian",
+      "name_as_listed": "Ekmekdjian",
+      "title": "Ekmekdjian, Miguel Angel c/ Sofovich, Gerardo y otros. s/ Recurso de hecho",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1992-07-07",
+      "docket": "E000000064",
+      "judicial_id": "FA92000322",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Derecho de respuesta y tratados"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1A1uVMxDPvt2cF8JwqxlCPFgg6K8HlRj5/view",
+          "label": "Fallo-315_1492-ekmekdjian.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o92000322pdf&name=92000322.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "29797107c259300f5f1981691b527815da762a80d523bcf6bc0c9dbc661ef81d",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-ekmekdjian-miguel-angel-sofovich-gerardo-otros-recurso-hecho-fa92000322-1992-07-07/123456789-223-0002-9ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-ekmekdjian-miguel-angel-sofovich-gerardo-otros-recurso-hecho-fa92000322-1992-07-07/123456789-223-0002-9ots-eupmocsollaf"
+    },
+    {
+      "id": "fibraca",
+      "name_as_listed": "Fibraca",
+      "title": "Fibraca Constructora SCA c/ Comisión Técnica Mixta de Salto Grande. s/ Recurso de Hecho",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1993-07-07",
+      "docket": "F000000433",
+      "judicial_id": "FA93000274",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Tratados e inmunidad de jurisdicción"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1itLY4_rzCxiN_Bi5gYDTl1A8Fp8lAyQT/view",
+          "label": "Fallo-316_1669-fibraca.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o93000274pdf&name=93000274.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "f6aff704f9fbab0855732eec23a146099792eab07246fd41a754d31dd47254e6",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-fibraca-constructora-sca-comision-tecnica-mixta-salto-grande-recurso-hecho-fa93000274-1993-07-07/123456789-472-0003-9ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-fibraca-constructora-sca-comision-tecnica-mixta-salto-grande-recurso-hecho-fa93000274-1993-07-07/123456789-472-0003-9ots-eupmocsollaf"
+    },
+    {
+      "id": "café-la-virginia",
+      "name_as_listed": "Café La Virginia",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1TPMlZemVzAbahitbN0ipd51BGkIWG3ch/view",
+          "label": "Fallo-317_1282-cafe-la-virginia.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "bramajo",
+      "name_as_listed": "Bramajo",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rBd_B8EhzufcXKjbUnZOxoAQRcpQJqJs/view",
+          "label": "Fallo-319_184012_09_1996-BRAMAJO.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "carranza-latrubesse",
+      "name_as_listed": "Carranza Latrubesse",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1nAFJci9jaEANk8ZnJxjwPZ6YMv3Qq9O0/view",
+          "label": "FALLO-Carranza-latrubesse.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "fontevecchia",
+      "name_as_listed": "Fontevecchia",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1F12cITzM-iys4nuhqqCCDiomCnOWFgnR/view",
+          "label": "FALLO-fontevecchia1.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "giroldi",
+      "name_as_listed": "Giroldi",
+      "title": "Giroldi, Horacio David y otro s/ recurso de casación - causa n. 32/93.",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1995-04-07",
+      "docket": "G000000342",
+      "judicial_id": "FA95000086",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Doble instancia y tratados de derechos humanos"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1e7bhSTX6ioxrjAHOF_SBj7d0u8JPKOCY/view",
+          "label": "FALLO-Giroldi.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        },
+        {
+          "url": "https://drive.google.com/file/d/1Si3birfKsb8cUerrL74kvv2VGk8JYLUV/view",
+          "label": "Giroldi,-Horacio-David-y-otro-s_-recurso-de-casacion---causa-n-32_93.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o95000086pdf&name=95000086.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "a2157d2e54e1937ab6cf1f52cfa689dfc2b7aee8cb32b40a25bccb430f9d37c0",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-giroldi-horacio-david-otro-recurso-casacion-causa-32-93-fa95000086-1995-04-07/123456789-680-0005-9ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-giroldi-horacio-david-otro-recurso-casacion-causa-32-93-fa95000086-1995-04-07/123456789-680-0005-9ots-eupmocsollaf"
+    },
+    {
+      "id": "mazzeo",
+      "name_as_listed": "Mazzeo",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/10hKnNc5Rgbbgo2oT1a7AaX5XrtGxqzQG/view",
+          "label": "FALLO-Mazzeo.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "bazterrica",
+      "name_as_listed": "Bazterrica",
+      "title": "Gustavo Mario BAZTERRICA s/ TENENCIA DE ESTUPEFACIENTES",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1986-08-29",
+      "docket": "B000000085",
+      "judicial_id": "FA86000507",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Privacidad y autonomía personal"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1I-Kqsjx8QoH6dsDaGbxa_K8C43CB52L0/view",
+          "label": "Gustavo-Mario-BAZTERRICA-s_-TENENCIA--DE--ESTUPEFACIENTES.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o86000507pdf&name=86000507.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "46efc53fd11e9c9293e5d87cfca9c640723e161faedf9b391780d69e18e58ea6",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-gustavo-mario-bazterrica-tenencia-estupefacientes-fa86000507-1986-08-29/123456789-705-0006-8ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-gustavo-mario-bazterrica-tenencia-estupefacientes-fa86000507-1986-08-29/123456789-705-0006-8ots-eupmocsollaf"
+    },
+    {
+      "id": "halabi",
+      "name_as_listed": "Halabi",
+      "title": "Halabi, Ernesto c/ P.E.N. — ley 25.873 — dto. 1563/04 s/ amparo ley 16.986",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2009-02-24",
+      "docket": "H.270.XLII",
+      "judicial_id": "FA09000006",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Acciones colectivas y privacidad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1bwR9u0BBANnI2TjP1HrCnkDQG8lWlfQ8/view",
+          "label": "Halabi,-Ernesto-c_-PEN---ley-25783---dto-1563_04-s_-amparo-ley-16986.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o09000006pdf&name=09000006.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "0e7ed66bdc74487927dd2513c843cbbce055f826ac0dc36e9af3a50b62338f5e",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-halabi-ernesto-pen-ley-25783-dto-1563-04-amparo-ley-16986-fa09000006-2009-02-24/123456789-600-0009-0ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "La ficha SAIJ dice 25.783; el texto íntegro de la sentencia dice 25.873. Se conserva la carátula del fallo.",
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-halabi-ernesto-pen-ley-25783-dto-1563-04-amparo-ley-16986-fa09000006-2009-02-24/123456789-600-0009-0ots-eupmocsollaf"
+    },
+    {
+      "id": "hooft",
+      "name_as_listed": "Hooft",
+      "title": "Hooft, Pedro Cornelio Federico c/ Provincia de Buenos Aires s/ acción declarativa de inconstitucionalidad",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2004-11-16",
+      "docket": "H. 172. XXXV.",
+      "judicial_id": "FA04000213",
+      "subject_codes": [
+        "2304",
+        "2314"
+      ],
+      "topics": [
+        "Igualdad y nacionalidad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1g8jHoLWGyWYTCj_Q0B-8lnVFUgKQ1Ptd/view",
+          "label": "Hooft,-Pedro-Cornelio-Federico-c_-Provincia-de-Buenos-Aires-s_-accion-declarativa-de-inconstitucionalidad-(1).pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        },
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        },
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o04000213pdf&name=04000213.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "0da5d3c000c90d8771b702e56dafc121a369cc19e5461af15067a070a9e4b915",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-hooft-pedro-cornelio-federico-provincia-buenos-aires-accion-declarativa-inconstitucionalidad-fa04000213-2004-11-16/123456789-312-0004-0ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-hooft-pedro-cornelio-federico-provincia-buenos-aires-accion-declarativa-inconstitucionalidad-fa04000213-2004-11-16/123456789-312-0004-0ots-eupmocsollaf"
+    },
+    {
+      "id": "cullen",
+      "name_as_listed": "Cullen",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1VS6GEK7QjonpheDm6u8_-8p0fLmEDld0/view",
+          "label": "Joaquin-M-Cullen,-por-el-Gobierno-Provisorio-de-Santa-Fe-c_-Doctor-Baldomero-Llerena-s_-inconstitucionalidad-de-la-ley-nacional-de-intervencion-en-la-Provincia-de-Santa-F.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "marbury-v.-madison",
+      "name_as_listed": "Marbury v. Madison",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1UeY2damU3aoXygaCw4n2NI4CTn4UQnxg/view",
+          "label": "marbury-v-madison.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://tile.loc.gov/storage-services/service/ll/usrep/usrep005/usrep005137/usrep005137.pdf",
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "Facsímil oficial de Library of Congress cotejado: Marbury v. Madison, 5 U.S. 137, febrero de 1803. Fecha exacta pendiente de fuente; no se exporta como registro completo. Derecho comparado, no sentencia argentina."
+    },
+    {
+      "id": "mill-de-pereyra",
+      "name_as_listed": "Mill de Pereyra",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1zaxP-s4aEbD9yNyitmoRqIrqmZI4qaUW/view",
+          "label": "Mill--de--Pereyra,--Rita--Aurora.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "montalvo",
+      "name_as_listed": "Montalvo",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1MnXSjMJ0q2r01m4HZg_1CP_cXuIteH0J/view",
+          "label": "Montalvo,-Ernesto-Alfredo-s_-INF-LEY-20771.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "repetto",
+      "name_as_listed": "Repetto",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1mo4PFfzdvDJQutzUWKNrbjxwPc75VlJs/view",
+          "label": "Repetto,-Ines-Maria-c_-Bs-As-Prov-de-s_-inconstitucionalidad-de-normas-legales.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "rodríguez-pereyra",
+      "name_as_listed": "Rodríguez Pereyra",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1_kVMx9mcQzZGuHxJvZICkwhCw-fiMqVK/view",
+          "label": "RODRIGUEZ,-PEREYRA-JORGE-LUIS-Y-OTRA-c_-EJERCITO-ARGENTINO-s_-DANOS-Y-PERJUICIOS.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "sojo",
+      "name_as_listed": "Sojo",
+      "title": "Sojo, Eduardo s/ recurso de habeas corpus",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1887-09-22",
+      "docket": "Causa CVIII",
+      "judicial_id": "FA87001154",
+      "subject_codes": [
+        "2304"
+      ],
+      "topics": [
+        "Competencia de la Corte y hábeas corpus"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1kJzoy-5XMyZOrTAsm58Hi8yQwenfK9A6/view",
+          "label": "Sojo,-Eduardo-s_-recurso-de-habeas-corpus.pdf",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o87001154pdf&name=87001154.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "171f9e77dc914c6904f61dfbc2c9a3d4c9009cfbfadc700f94d910fbce3e7976",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-sojo-eduardo-recurso-habeas-corpus-fa87001154-1887-09-22/123456789-451-1007-8ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-sojo-eduardo-recurso-habeas-corpus-fa87001154-1887-09-22/123456789-451-1007-8ots-eupmocsollaf"
+    },
+    {
+      "id": "albarracini",
+      "name_as_listed": "Albarracini",
+      "title": "Albarracini Nieves, Jorge Washington s/ medidas precautorias",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2012-06-01",
+      "docket": "A. 523",
+      "judicial_id": "FA12000076",
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Autonomía personal"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o12000076pdf&name=12000076.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "90eff15d9f6abd1d2ef03172b517a508974aa882b1c02161da98810d09567074",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-albarracini-nieves-jorge-washington-medidas-precautorias-fa12000076-2012-06-01/123456789-670-0002-1ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-albarracini-nieves-jorge-washington-medidas-precautorias-fa12000076-2012-06-01/123456789-670-0002-1ots-eupmocsollaf"
+    },
+    {
+      "id": "alitt",
+      "name_as_listed": "ALITT",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Autonomía personal"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "arenzón",
+      "name_as_listed": "Arenzón",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Igualdad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        },
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "gottschau",
+      "name_as_listed": "Gottschau",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Igualdad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "pellicori",
+      "name_as_listed": "Pellicori",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Igualdad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "sisnero",
+      "name_as_listed": "Sisnero",
+      "title": "Sisnero, Mirtha Graciela y otros c/ Taldelva SRL y otros s/ amparo",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2014-05-20",
+      "docket": "S.932.XLVI",
+      "judicial_id": "FA14000071",
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Igualdad"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+          "label": "Lecturas: artículo 19 e igualdad",
+          "date": "2020-05-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o14000071pdf&name=14000071.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "1b120a6663d4f7b11f04d0067e1d1d41cf4216b08565e7433d06c30beda68a0e",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-sisnero-mirtha-graciela-otros-taldelva-srl-otros-amparo-fa14000071-2014-05-20/123456789-170-0004-1ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-sisnero-mirtha-graciela-otros-taldelva-srl-otros-amparo-fa14000071-2014-05-20/123456789-170-0004-1ots-eupmocsollaf"
+    },
+    {
+      "id": "campillay",
+      "name_as_listed": "Campillay",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Libertad de expresión"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "patitó",
+      "name_as_listed": "Patitó",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Libertad de expresión"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "martín",
+      "name_as_listed": "Martín",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "La referencia abreviada no identifica unívocamente una sentencia. No completar datos por inferencia."
+    },
+    {
+      "id": "ate",
+      "name_as_listed": "ATE",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "La referencia abreviada no identifica unívocamente una sentencia. No completar datos por inferencia."
+    },
+    {
+      "id": "castillo",
+      "name_as_listed": "Castillo",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Libertad religiosa"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1rKG0X-P2o6hXTsrm-zdx2oWxNsRFFxdH/view",
+          "label": "Lecturas para la próxima clase",
+          "date": null,
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "llerena",
+      "name_as_listed": "Llerena",
+      "title": "Llerena, Horacio Luis s/ abuso de armas y lesiones - arts. 104 y 89 de Código Penal -causa N° 3221-.",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2005-05-17",
+      "docket": null,
+      "judicial_id": "FA05000320",
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Imparcialidad judicial"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1hHmFWwuK9HamCTVMztbGHbL9L_la_YZ8/view",
+          "label": "Garantías constitucionales del debido proceso",
+          "date": "2020-05-20",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-llerena-horacio-luis-abuso-armas-lesiones-arts-104-89-codigo-penal-causa-3221-fa05000320-2005-05-17/123456789-023-0005-0ots-eupmocsollaf",
+      "verification": null,
+      "review_status": "pending-full-judgment",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "Ficha oficial y metadatos comprobados; el texto íntegro no se recuperó en esta entrega. No se exporta como sentencia lista para incorporar.",
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-llerena-horacio-luis-abuso-armas-lesiones-arts-104-89-codigo-penal-causa-3221-fa05000320-2005-05-17/123456789-023-0005-0ots-eupmocsollaf"
+    },
+    {
+      "id": "benítez",
+      "name_as_listed": "Benítez",
+      "title": "Benítez, Aníbal Leonel s/ lesiones graves — causa n° 1524",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2006-12-12",
+      "docket": "B. 1147. XL.",
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Defensa y control de la prueba"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1hHmFWwuK9HamCTVMztbGHbL9L_la_YZ8/view",
+          "label": "Garantías constitucionales del debido proceso",
+          "date": "2020-05-20",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://sjconsulta.csjn.gov.ar/sjconsulta/documentos/verDocumentoByIdLinksJSP.html?idDocumento=6126951",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-document-via-reader",
+        "sha256": "a4739b6b6f1b3ff5ad5f729ee1d068b3e6f9cd2416fc3fbdb15cd00aaddab715",
+        "evidence": "Carátula, fecha y expediente cotejados con el texto de la sentencia."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "duarte",
+      "name_as_listed": "Duarte",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Doble conforme"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1hHmFWwuK9HamCTVMztbGHbL9L_la_YZ8/view",
+          "label": "Garantías constitucionales del debido proceso",
+          "date": "2020-05-20",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "El enlace CIJ de la nota corresponde a P., S. M. y otro (2019), que cita Duarte. No usar ese PDF como sentencia Duarte."
+    },
+    {
+      "id": "losicer",
+      "name_as_listed": "Losicer",
+      "title": "Losicer, Jorge Alberto y otros c/ BCRA - Resol.169/05 (expte.105.666/86 SUM FIN 708)",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2012-06-26",
+      "docket": "L.216.XLV",
+      "judicial_id": "FA12000097",
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Plazo razonable"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1hHmFWwuK9HamCTVMztbGHbL9L_la_YZ8/view",
+          "label": "Garantías constitucionales del debido proceso",
+          "date": "2020-05-20",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/descarga-archivo?guid=rstuvwfa-llos-comp-uest-o12000097pdf&name=12000097.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "official-record-and-attached-pdf",
+        "sha256": "0e1c43a22cfc5691dcedf9681141d5fc673d24335e3221b1765f2616f0cb2e4d",
+        "record_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-losicer-jorge-alberto-otros-bcra-resol-169-05-expte-105666-86-sum-fin-708-fa12000097-2012-06-26/123456789-790-0002-1ots-eupmocsollaf",
+        "evidence": "Carátula y materia cotejadas en el documento adjunto; fecha e identificador cotejados en la ficha oficial. Facsímiles revisados visualmente cuando no tienen texto extraíble."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null,
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-losicer-jorge-alberto-otros-bcra-resol-169-05-expte-105666-86-sum-fin-708-fa12000097-2012-06-26/123456789-790-0002-1ots-eupmocsollaf"
+    },
+    {
+      "id": "ríos",
+      "name_as_listed": "Ríos",
+      "title": "Ríos, Antonio Jesús. s/ Oficialización canditura Diputado Nacional - Distrito Corrientes",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "1987-04-22",
+      "docket": "R000000002",
+      "judicial_id": "FA87000745",
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Derechos políticos"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1Z3AQXRgRWLD7pgDUbXP-_AZ1w4PnI-Sm/view",
+          "label": "Derechos políticos: Ríos",
+          "date": "2020-06-21",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-rios-antonio-jesus-oficializacion-canditura-diputado-nacional-distrito-corrientes-fa87000745-1987-04-22/123456789-547-0007-8ots-eupmocsollaf",
+      "verification": null,
+      "review_status": "pending-full-judgment",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": "Ficha oficial y metadatos comprobados; el texto íntegro no se recuperó en esta entrega. No se exporta como sentencia lista para incorporar.",
+      "metadata_source_url": "https://www.saij.gob.ar/corte-suprema-justicia-nacion-federal-ciudad-autonoma-buenos-aires-rios-antonio-jesus-oficializacion-canditura-diputado-nacional-distrito-corrientes-fa87000745-1987-04-22/123456789-547-0007-8ots-eupmocsollaf"
+    },
+    {
+      "id": "partido-nuevo-triunfo",
+      "name_as_listed": "Partido Nuevo Triunfo",
+      "title": "Partido Nuevo Triunfo s/ reconocimiento — Distrito Capital Federal",
+      "court": "Corte Suprema de Justicia de la Nación",
+      "date": "2009-03-17",
+      "docket": "P. 1469. XLI.",
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Derechos políticos"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/1uurAYx1rpOZNf_F15P_lksB9PjXKGwoz/view",
+          "label": "Nuevo Triunfo",
+          "date": "2020-06-29",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": "https://www.cij.gov.ar/archivo-cij/adj/pdfs/ADJ-0.469791001237304946.pdf",
+      "verification": {
+        "checked_at": "2026-10-27",
+        "method": "direct-pdf-text",
+        "sha256": "a4cb699b4885ba35fc727492bb8414c02a59e64548bfb1818bf498bc6b446343",
+        "evidence": "Carátula, fecha del fallo y expediente cotejados con el texto de la sentencia. El archivo incluye dictamen anterior."
+      },
+      "review_status": "verified-source-awaiting-editorial-review",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    },
+    {
+      "id": "consumidores-argentinos",
+      "name_as_listed": "Consumidores Argentinos",
+      "title": null,
+      "court": null,
+      "date": null,
+      "docket": null,
+      "judicial_id": null,
+      "subject_codes": [
+        "2314"
+      ],
+      "topics": [
+        "Decretos y Poder Ejecutivo"
+      ],
+      "reading_sources": [
+        {
+          "url": "https://drive.google.com/file/d/12uLKRrF3g0A4uNd28lY3eh9j0GQ30Als/view",
+          "label": "Poder Ejecutivo: lecturas",
+          "date": "2020-04-27",
+          "academic_program_confirmed": false
+        }
+      ],
+      "official_url": null,
+      "verification": null,
+      "review_status": "pending-official-source",
+      "editorial_status": "draft",
+      "seo_level": "A",
+      "notes": null
+    }
+  ],
+  "bibliographic_references": [
+    {
+      "title": "(Des)igualdad estructural",
+      "author": "Roberto Saba",
+      "year": 2007,
+      "publisher": "Lexis Nexis",
+      "container": "El Derecho a la Igualdad. Aportes para un constitucionalismo igualitario",
+      "subject_code": "2314",
+      "source_url": "https://drive.google.com/file/d/1tQNeiAMGl1FwuxIsBcLZkYfMD5TmcAwd/view",
+      "status": "reference-only-no-file"
+    },
+    {
+      "title": "Crítica de la Constitución. Sus zonas oscuras",
+      "author": "Roberto Gargarella",
+      "year": 2004,
+      "publisher": "Capital Intelectual",
+      "reading": "Primeros tres capítulos, según nota de lectura",
+      "subject_code": "2314",
+      "source_url": "https://drive.google.com/file/d/1bH-HS5Vawh__PXzMC_m8C0_kIf2JQQg7/view",
+      "status": "reference-only-no-file"
+    }
+  ],
+  "verification_timezone": "America/Buenos_Aires"
+}
