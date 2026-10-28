@@ -19,9 +19,9 @@ para permitir pruebas HTTP locales sin confundirlas con el HTTPS de Supabase.
 
 ## Evidencia ejecutada
 
-- 23 pruebas Node: incluye envío restringido, prohibición de crear cuentas,
+- 24 pruebas Node: incluye envío restringido, prohibición de crear cuentas,
   callback con código rechazado, permisos revocados/fallo de RPC, destinos y
-  atributos de cookies. Estos casos usan dobles para Auth; no son login real.
+  atributos de cookies. Incluye el SDK SSR instalado con transporte interceptado para comprobar PKCE y cookie verificadora HTTPOnly/Secure/Lax. Estos casos usan dobles para Auth; no son login real.
 - TypeScript, ESLint y build de producción; smoke de 51 páginas, 34 materias,
   13 fichas de demostración, filtros, SEO y dos PDF originales.
 - PostgreSQL 17.11 nativo local: esquema, 34 materias, RLS, permisos de

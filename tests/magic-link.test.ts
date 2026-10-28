@@ -46,3 +46,30 @@ test("SSR cookies remain HTTPOnly/Lax and secure on HTTPS, while local HTTP can 
   assert.equal(sessionCookieOptions({ HOTTO_SITE_ORIGIN: "http://localhost:3000", NODE_ENV: "production" }).secure, false);
   assert.equal(sessionCookieOptions({ NODE_ENV: "production" }).secure, true);
 });
+
+test("installed Supabase SSR emits PKCE and an HTTPOnly verifier cookie without creating a user", async () => {
+  const { createServerClient } = await import("@supabase/ssr");
+  const writes: { name: string; value: string; options: { httpOnly?: boolean; secure?: boolean; sameSite?: unknown } }[] = [];
+  let sent: Record<string, unknown> = {};
+  let destination = "";
+  const client = createServerClient("https://pkce-test.supabase.co", "sb_publishable_test", {
+    cookieOptions: sessionCookieOptions({ HOTTO_SITE_ORIGIN: "https://hotto.example" }),
+    cookies: { getAll: () => [], setAll: (entries) => { writes.push(...entries); } },
+    global: { fetch: async (url, options) => {
+      destination = String(url);
+      sent = JSON.parse(String(options?.body));
+      return new Response("{}", { status: 200, headers: { "Content-Type": "application/json" } });
+    } },
+  });
+  const result = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: "https://hotto.example/api/auth/callback" } });
+  assert.equal(result.error, null);
+  assert.equal(sent.create_user, false);
+  assert.equal(sent.code_challenge_method, "s256");
+  assert.equal(typeof sent.code_challenge, "string");
+  assert.equal(new URL(destination).searchParams.get("redirect_to"), "https://hotto.example/api/auth/callback");
+  const verifier = writes.find((entry) => entry.name.includes("code-verifier") && entry.value);
+  assert(verifier);
+  assert.equal(verifier.options.httpOnly, true);
+  assert.equal(verifier.options.secure, true);
+  assert.equal(verifier.options.sameSite, "lax");
+});
