@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Link href="/biblioteca/jurisprudencia">Jurisprudencia</Link>
             </nav>
             <p className="footer-note">
-              MVP de demostración · Recursos de prueba
+              Biblioteca en desarrollo · Consultá la procedencia de cada recurso
               <br />© 2026 HOTTO
             </p>
           </div>

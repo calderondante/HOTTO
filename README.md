@@ -69,3 +69,5 @@ loopback documentada; CI dispone de un trabajo PostgreSQL separado.
 [roadmap](docs/ROADMAP.md) y [AGENTS.md](AGENTS.md).
 La validación histórica del bootstrap está en docs/VALIDACION.md.
 No se ha desplegado un sitio ni creado una base remota.
+
+Despliegue y acceso administrativo por Magic Link: [guía de lanzamiento](docs/LANZAMIENTO.md).

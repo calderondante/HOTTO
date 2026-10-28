@@ -1,3 +1,4 @@
+import { sessionCookieOptions } from "@/lib/admin/magic-link";
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { supabaseConfig } from "@/lib/supabase/config";
@@ -7,11 +8,7 @@ export async function proxy(request: NextRequest) {
   const c = supabaseConfig();
   if (c) {
     const client = createServerClient<Database>(c.url, c.key, {
-      cookieOptions: {
-        httpOnly: true,
-        sameSite: "lax",
-        secure: c.url.startsWith("https:"),
-      },
+      cookieOptions: sessionCookieOptions(),
       cookies: {
         getAll: () => request.cookies.getAll(),
         setAll: (entries, headers) => {

@@ -1,8 +1,9 @@
+import { sessionCookieOptions } from "@/lib/admin/magic-link";
 import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
-import type { Database } from "@/lib/library/database.types";
+import type { Database } from "@/lib/library/database.generated";
 import { supabaseConfig } from "./config";
 export async function sessionClient() {
   const config = supabaseConfig();
@@ -12,11 +13,7 @@ export async function sessionClient() {
     global: {
       fetch: (url, options) => fetch(url, { ...options, cache: "no-store" }),
     },
-    cookieOptions: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: config.url.startsWith("https:"),
-    },
+    cookieOptions: sessionCookieOptions(),
     cookies: {
       getAll: () => store.getAll(),
       setAll: (entries) => {

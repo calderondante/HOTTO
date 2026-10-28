@@ -89,6 +89,7 @@ export async function POST(
         verification: choice(body.verification, [
           "official",
           "secondary-crosschecked",
+          "original-demo",
           "unverified",
         ] as const),
         editorial_status: choice(body.editorial_status, states),
@@ -202,14 +203,36 @@ export async function POST(
       return Response.json({ id });
     }
     if (entity === "jurisprudence") {
+      const verified = body.official_link_checked === true;
       const result = await client.from("jurisprudence").upsert({
         work_id: uuid(body.work_id),
         court: text(body.court),
         docket: text(body.docket),
         decision_date: date(body.decision_date) ?? "",
         topic: text(body.topic),
-        holding: text(body.holding, 20, 6000),
+        holding: optionalText(body.holding, 6000),
+        jurisdiction: text(body.jurisdiction),
+        chamber: text(body.chamber ?? "", 0, 200),
+        judicial_id: optionalText(body.judicial_id, 200),
+        official_url: body.official_url ? httpsUrl(body.official_url) : null,
+        official_verified_at: verified ? new Date().toISOString() : null,
+        legal_issue: text(body.legal_issue ?? "", 0, 12000),
+        facts: text(body.facts ?? "", 0, 12000),
+        decision: text(body.decision ?? "", 0, 12000),
+        reasoning: text(body.reasoning ?? "", 0, 12000),
+        significance: text(body.significance ?? "", 0, 12000),
+        applicable_law: text(body.applicable_law ?? "", 0, 12000),
       });
+      check(result.error);
+      return Response.json({ ok: true });
+    }
+    if (entity === "judicial-analysis") {
+      const workId = uuid(body.work_id),
+        state = choice(body.analysis_state, ["none", "draft", "review", "approved"] as const),
+        level = choice(body.seo_level, ["A", "B", "C"] as const);
+      const result = await client.from("jurisprudence")
+        .update({ analysis_state: state, seo_level: level })
+        .eq("work_id", workId).select("work_id").single();
       check(result.error);
       return Response.json({ ok: true });
     }

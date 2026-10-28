@@ -15,7 +15,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 HOTTO es una plataforma para la comunidad jurídica argentina. La biblioteca es
 el producto principal y debe ser pública sin cuentas obligatorias inicialmente.
 Consultar `docs/PRODUCTO.md`, `docs/ROADMAP.md` y `docs/BACKEND_ADMIN.md`. El backend
-y panel privado están implementados; necesitan un proyecto Supabase configurado.
+y panel privado están implementados. El proyecto Supabase de desarrollo está
+conectado; consultar `docs/PHASE4_SUPABASE_LIVE.md` antes de nuevas migraciones.
 Sin conexión, conservar la biblioteca de demostración y cerrar la administración.
 No inventar materias, bibliografía, datos universitarios ni permisos de distribución.
 

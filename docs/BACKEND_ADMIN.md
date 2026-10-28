@@ -1,9 +1,9 @@
 # Backend y administración documental
 
-Fase 3 sobre el MVP del PR #2, fusionado el 14/10/2026. El panel y el adaptador
-Supabase están implementados. **No hay un proyecto remoto conectado en este
-entorno:** sin credenciales válidas, `/admin` informa la conexión pendiente y
-rechaza operaciones. No hay login de demostración ni persistencia en navegador.
+Fase 3 sobre el MVP del PR #2. El panel y el adaptador Supabase están
+implementados y conectados al proyecto de desarrollo en Fase 4. Estado de la
+activación y pruebas: `docs/PHASE4_SUPABASE_LIVE.md`. No hay login de
+demostración ni persistencia administrativa en navegador.
 
 ## Modelo y flujo
 
@@ -20,7 +20,7 @@ documento y eventos editoriales completan la trazabilidad.
 Proceso del panel:
 
 1. Ingresar título y tipo, con PDF privado, enlace HTTPS o referencia.
-2. Completar descripción, autores, fuente, licencia y clasificación por materias.
+2. Completar descripción, autores cuando correspondan, fuente, licencia y clasificación por materias.
 3. Registrar ediciones; cada documento de un libro requiere una edición publicada.
 4. Verificar evidencia y vigencia de permisos de cada documento.
 5. Enviar el documento a revisión y publicarlo; luego revisar y publicar la obra.
@@ -85,47 +85,27 @@ No se permiten overwrite ni borrar objetos ligados a documentos. Los gateways
 transmiten el PDF, con Range y sin caché. La URL firmada de 60 segundos permanece
 en el servidor. Bytes ya entregados no pueden retirarse del equipo del lector.
 
-## Conexión pendiente
+## Conexión activa y acceso administrativo
 
-Se comprobaron configuración Cloud, nombres/presencia de variables y la CLI.
-No hay bindings Supabase ni project-ref. `supabase projects list` exige access
-token. Eso indica falta de acceso configurado, no demuestra que el propietario
-no tenga un proyecto existente. No se creó ningún servicio remoto.
+El proyecto de desarrollo `trkoraszozabtywkfvin` (sa-east-1, PostgreSQL 17.11)
+tiene las ocho migraciones aplicadas, 34 materias, el bucket privado y el único
+administrador inicial autorizado mediante `private.library_admins`. La cuenta
+Auth preexistente tiene correo confirmado. Las variables de conexión están en
+Codex Cloud; ninguna clave privada se incorpora al repositorio. El frontend
+usa la publishable key y datos persistentes cuando `HOTTO_DATA_SOURCE=supabase`.
 
-Para continuar, el propietario debe seleccionar un **proyecto de desarrollo**
-existente o crear uno desde Supabase con el plan que autorice. Configurar por el
-mecanismo seguro del entorno, sin pegar secretos en chat:
+El ingreso usa Magic Link para correos previamente habilitados, sin alta
+pública ni contraseña. El primer ingreso real por correo y el ciclo de
+carga/publicación siguen pendientes de una sesión legítima. Consultar
+[LANZAMIENTO.md](LANZAMIENTO.md) para variables, URLs, SMTP y prueba de aceptación.
+El catálogo real conserva cero obras; los ejemplos permanecen separados.
 
-| Variable                             | Uso                                                           |
-| ------------------------------------ | ------------------------------------------------------------- |
-| NEXT_PUBLIC_SUPABASE_URL             | URL real del proyecto                                         |
-| NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY | Clave pública publishable, o anon heredada                    |
-| HOTTO_DATA_SOURCE                    | `supabase` opcional; conexión parcial produce error explícito |
-| HOTTO_SITE_ORIGIN                    | Origen HTTPS exacto del despliegue cuando haya proxy          |
-
-Reiniciar el servidor y reconstruir el despliegue después de configurar variables
-NEXT_PUBLIC; Next integra esas variables al build.
-
-Agregar el hostname específico del proyecto a la política de red; no inventar
-hosts ni habilitar todos los proyectos Supabase. Las migraciones requieren además
-acceso administrativo **de desarrollo**, por CLI vinculada o conexión SQL segura.
-Con ese acceso, el agente puede aplicar las migraciones ordenadas, cotejar la
-versión y generar tipos reales, sin tareas manuales innecesarias. No aplicar a
-producción ni resetear datos existentes.
-
-Crear el primer usuario mediante Supabase Auth y elegir explícitamente quién
-será administrador. El propietario SQL puede habilitarlo después de migrar:
-
-```sql
-insert into private.library_admins(user_id, active)
-select id, true from auth.users where lower(email) = lower('<correo elegido>')
-on conflict (user_id) do update set active = true;
-```
-
-La semilla no crea usuarios, obras, permisos de distribución ni cuentas de
-prueba. Tras la conexión faltan las pruebas integradas reales: login/logout,
-no-administrador, carga por Storage HTTP, vista privada, revisión/publicación,
-lectura anónima, despublicación y revocación. No se han considerado aprobadas.
+Para otro despliegue, configurar por el mecanismo seguro del entorno
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` y
+`HOTTO_DATA_SOURCE=supabase`; reconstruir el build tras modificar variables
+`NEXT_PUBLIC_*`. `HOTTO_SITE_ORIGIN` debe ser el origen HTTPS público definitivo
+antes de habilitar fichas nivel C en robots/sitemap. No usar service-role en el
+navegador ni agregarlo a este proyecto Next.
 
 ## Biblioteca y límites
 

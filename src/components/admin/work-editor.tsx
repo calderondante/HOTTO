@@ -214,8 +214,8 @@ export function WorkEditor({
           <CardHeader>
             <CardTitle>Ficha judicial</CardTitle>
             <CardDescription>
-              Usá datos del fallo y su fuente verificable. No completes
-              identificadores por conjetura.
+              Registrá el identificador estable y comprobá el destino oficial.
+              Un fallo de nivel A aparece en la búsqueda sin página propia ni PDF.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -231,10 +231,13 @@ export function WorkEditor({
               />
               <TextField
                 name="docket"
-                label="Expediente / carátula"
+                label="Expediente"
                 value={data.jurisprudence?.docket}
                 required
               />
+              <TextField name="judicial_id" label="Identificador judicial estable" value={data.jurisprudence?.judicial_id} required />
+              <TextField name="jurisdiction" label="Jurisdicción" value={data.jurisprudence?.jurisdiction} required />
+              <TextField name="chamber" label="Sala (si corresponde)" value={data.jurisprudence?.chamber} />
               <TextField
                 name="decision_date"
                 label="Fecha de decisión"
@@ -250,13 +253,31 @@ export function WorkEditor({
               />
               <TextField
                 name="holding"
-                label="Síntesis editorial"
+                label="Síntesis editorial breve (opcional)"
                 value={data.jurisprudence?.holding}
                 multiline
-                required
                 maxLength={6000}
               />
+              <TextField name="official_url" label="URL HTTPS específica del fallo en el sitio oficial" type="url" value={data.jurisprudence?.official_url} required maxLength={2000} />
+              <CheckField name="official_link_checked" label="Abrí el enlace y comprobé que lleva a este fallo en una fuente oficial" />
+              <p className="field-hint">El enlace debe coincidir con el documento externo de esta obra. La comprobación se registra al guardar; si se modifica la URL, revisala de nuevo.</p>
+              <TextField name="legal_issue" label="Problema jurídico original" value={data.jurisprudence?.legal_issue} multiline maxLength={12000} />
+              <TextField name="facts" label="Hechos relevantes" value={data.jurisprudence?.facts} multiline maxLength={12000} />
+              <TextField name="decision" label="Decisión del tribunal" value={data.jurisprudence?.decision} multiline maxLength={12000} />
+              <TextField name="reasoning" label="Fundamentos principales" value={data.jurisprudence?.reasoning} multiline maxLength={12000} />
+              <TextField name="significance" label="Importancia jurisprudencial" value={data.jurisprudence?.significance} multiline maxLength={12000} />
+              <TextField name="applicable_law" label="Normativa aplicable" value={data.jurisprudence?.applicable_law} multiline maxLength={12000} />
             </EditorForm>
+            <div className="judicial-review">
+              <h3>Revisión del análisis y visibilidad</h3>
+              <p>Nivel A: solo enlace oficial. B: ficha interna sin indexación. C: análisis original revisado y aprobado; requiere además un dominio HTTPS público configurado para entrar al sitemap.</p>
+              <p>Estado actual: <strong>{data.jurisprudence?.analysis_state ?? "none"}</strong> · Nivel <strong>{data.jurisprudence?.seo_level ?? "A"}</strong>{data.jurisprudence?.approved_at ? " · aprobación registrada" : ""}</p>
+              <EditorForm endpoint="/api/admin/judicial-analysis" initial={{ work_id: w.id }} label="Guardar decisión editorial">
+                <SelectField name="analysis_state" label="Estado del análisis" value={data.jurisprudence?.analysis_state ?? "none"} items={[{ id: "none", name: "Sin análisis" }, { id: "draft", name: "Borrador" }, { id: "review", name: "En revisión" }, { id: "approved", name: "Aprobado" }]} />
+                <SelectField name="seo_level" label="Nivel de ficha" value={data.jurisprudence?.seo_level ?? "A"} items={[{ id: "A", name: "A · solo enlace oficial" }, { id: "B", name: "B · ficha noindex" }, { id: "C", name: "C · ficha indexable" }]} />
+              </EditorForm>
+              <p className="field-hint">Después de cambiar la ficha judicial, revisá y republicá la obra si estaba publicada.</p>
+            </div>
           </CardContent>
         </Card>
       )}

@@ -123,7 +123,22 @@ export interface CaseRow {
   docket: string;
   decision_date: string;
   topic: string;
-  holding: string;
+  holding: string | null;
+  jurisdiction: string;
+  chamber: string;
+  judicial_id: string | null;
+  official_url: string | null;
+  official_verified_at: string | null;
+  legal_issue: string;
+  facts: string;
+  decision: string;
+  reasoning: string;
+  significance: string;
+  applicable_law: string;
+  analysis_state: "none" | "draft" | "review" | "approved";
+  seo_level: "A" | "B" | "C";
+  approved_by: string | null;
+  approved_at: string | null;
 }
 export interface LegislationRow {
   work_id: string;
@@ -180,6 +195,17 @@ export interface Database {
           subject_code?: string;
           kind_filter?: string;
           available_only?: boolean;
+          page_number?: number;
+        };
+        Returns: Json;
+      };
+      search_jurisprudence: {
+        Args: {
+          query_text?: string;
+          subject_code?: string;
+          court_filter?: string;
+          year_filter?: number | null;
+          jurisdiction_filter?: string;
           page_number?: number;
         };
         Returns: Json;

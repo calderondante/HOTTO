@@ -1,6 +1,6 @@
 import { supabaseConfig } from "@/lib/supabase/config";
 import { ConnectionNeeded } from "@/components/admin/access";
-import { EditorForm, TextField } from "@/components/admin/form";
+import { MagicLinkForm } from "@/components/admin/magic-link-form";
 import {
   Card,
   CardHeader,
@@ -8,7 +8,8 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-export default function Login() {
+export default async function Login({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const status = (await searchParams).status;
   return (
     <div className="admin-login">
       <p className="eyebrow">HOTTO · GESTIÓN DOCUMENTAL</p>
@@ -22,32 +23,12 @@ export default function Login() {
           <CardHeader>
             <CardTitle>Iniciar sesión</CardTitle>
             <CardDescription>
-              Ingresá con tu cuenta administrativa. El acceso se verifica en
-              Supabase.
+              Recibí un enlace de un solo uso en tu correo autorizado. No necesitás contraseña.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <EditorForm
-              endpoint="/api/auth/login"
-              nextPath="/admin"
-              label="Ingresar"
-            >
-              <TextField
-                name="email"
-                label="Correo electrónico"
-                type="email"
-                required
-                autoComplete="username"
-              />
-              <TextField
-                name="password"
-                label="Contraseña"
-                type="password"
-                required
-                autoComplete="current-password"
-                maxLength={256}
-              />
-            </EditorForm>
+            {status === "invalid" && <p role="alert">El enlace no es válido, venció o la cuenta no tiene acceso. Solicitá otro enlace y abrilo en el mismo navegador.</p>}
+            <MagicLinkForm />
           </CardContent>
         </Card>
       ) : (

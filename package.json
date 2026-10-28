@@ -16,7 +16,8 @@
     "ui": "shadcn",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:browser": "node scripts/browser-mvp.mjs",
-    "test:postgres": "bash scripts/test-postgres.sh"
+    "test:postgres": "bash scripts/test-postgres.sh",
+    "test:auth-http": "node scripts/test-auth-http.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
@@ -25,7 +26,7 @@
     "class-variance-authority": "0.7.1",
     "cn": "0.4.0",
     "lucide-react": "1.55.0",
-    "next": "16.4.0",
+    "next": "16.4.3",
     "pdf-lib": "1.17.1",
     "pdfjs-dist": "6.4.299",
     "react": "19.3.0",
@@ -39,7 +40,7 @@
     "@types/react-dom": "19.3.0",
     "agent-browser": "0.39.1",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "16.4.3",
     "shadcn": "4.21.4",
     "skills": "1.7.2",
     "supabase": "2.120.0",
